@@ -8,11 +8,6 @@ import { ThemeProvider } from 'styled-components';
 
 const exo = Exo_2({ weight: ['300', '400', '500', '600', '700', '800'], subsets: ['latin'], display: 'swap' });
 
-export const metadata = {
-  title: 'EZHire',
-  description: 'Recruitment Website',
-};
-
 const theme = {
   mainColor: "#203647",
   textColor: "#888"
