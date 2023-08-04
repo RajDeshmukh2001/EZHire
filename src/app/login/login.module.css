@@ -1,0 +1,173 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;
+    background: rgb(207, 227, 226);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.signUpContainer {
+    margin: 40px 0;
+}
+
+.imgContainer {
+    width: 100%;
+    height: 470px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img {
+    object-fit: cover;
+}
+ 
+.formContainer {
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+}
+
+.title {
+    color: #203647;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    background-color: transparent;
+    border: 1px solid #bbb;
+    padding: 8px 14px;
+    color: #888;
+    letter-spacing: 0.5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.5s ease-in;
+}
+
+.btn:hover {
+    border: 1px solid #203647;
+    color: #203647;
+}
+
+.icon {
+    font-size: 16px;
+    color: initial;
+}
+
+.or {
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #888;
+    position: relative;
+}
+
+.or::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 40px;
+    width: 150px;
+    height: 0.8px;
+    background-color: #888;
+}
+
+.or::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    width: 150px;
+    height: 0.8px;
+    background-color: #888;
+}
+
+.form{
+    position: relative;
+    width: 380px;
+    text-align: center;
+}
+
+.signUp {
+    width: 405px;
+}
+
+.form .input{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.box input{
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1.5px solid #bbb;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: 0.5s ease-in-out;
+}
+
+.box input:is(:focus) {
+    border-bottom: 1.5px solid #203647;
+} 
+
+.box input::placeholder{
+    color: #888;
+    font-size: 14px;
+}
+
+.forgot {
+    margin-top: -5px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+    transition: 0.5s ease-in;
+}
+
+.forgot:hover {
+    cursor: pointer;
+    color: #203647;
+}
+
+.text {
+    width: 380px;
+    font-size: 13px;
+    color: #888;
+}
+
+.text2 {
+    width: 405px;
+}
+
+.text a{
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+    transition: 0.5s ease-in;
+}
+
+.text a:hover {
+    color: #203647;
+}
