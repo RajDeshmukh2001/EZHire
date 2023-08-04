@@ -39,7 +39,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                <p className={styles.text}>Don't have an account? <Link href="/register">SIGN UP</Link></p>
+                <p className={styles.text}>Don&apos;t have an account? <Link href="/register">SIGN UP</Link></p>
             </div>
         </div>
     )

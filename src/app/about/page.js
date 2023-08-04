@@ -39,8 +39,8 @@ const About = () => {
         <div className={styles.content}>
           <h4>Got Talent?</h4>
           <h2>Why job seekers love us</h2>
-          <p><span><BsArrowRight /></span>Unique jobs at startups and tech companies you can't find anywhere else</p>
-          <p><span><BsArrowRight /></span>Say goodbye to cover letters - your profile is all you need. One click to apply and you're done.</p>
+          <p><span><BsArrowRight /></span>Unique jobs at startups and tech companies you can&apos;t find anywhere else</p>
+          <p><span><BsArrowRight /></span>Say goodbye to cover letters - your profile is all you need. One click to apply and you&apos;re done.</p>
           <p><span><BsArrowRight /></span>Everything you need to know to job search - including seeing salary and stock options upfront when looking</p>
           <p><span><BsArrowRight /></span>Connect directly with founders at top startups - no third party recruiters allowed</p>
         </div>
