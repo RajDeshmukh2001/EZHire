@@ -87,3 +87,133 @@
     transform: translateX(10px);
     color: #007cc7;
 }
+
+@media screen and (max-width: 770px) {
+    .container {
+        margin: 20px 0;
+    }
+    
+    .header {
+        margin-bottom: 30px;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+        padding: 40px;
+    }
+    
+    .content {
+        gap: 20px;
+    }
+    
+    .content h1 {
+        font-size: 25px;
+        font-weight: 700;
+    }
+    
+    .content p{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    
+    .btn {
+        margin-top: 15px;
+        gap: 20px;
+    }
+    
+    .imgBox {
+        display: none;
+    }
+    
+    .box {
+        margin: 40px 0;
+        gap: 30px;
+    }
+    
+    .boxContent {
+        padding: 20px 0;
+        gap: 20px;
+    }
+    
+    .tag {
+        font-size: 13px;
+    }
+    
+    .boxContent h2 {
+        font-size: 17px;
+    }
+    
+    .boxContent h4 {
+        font-size: 14px;
+    }
+    
+    .point {
+        gap: 13px;
+        font-size: 15px;  
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 20px 0;
+    }
+    
+    .header {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .content h1 {
+        font-size: 20px;
+    }
+    
+    .content p{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    
+    .btn {
+        margin-top: 10px;
+    }
+
+    .img {
+        width: 250px !important;
+        height: 180px !important;
+    }
+    
+    .box {
+        margin: 40px 0;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .boxContent {
+        padding: 0 30px;
+        gap: 15px;
+    }
+    
+    .tag {
+        text-transform: capitalize;
+        font-size: 13px;
+    }
+    
+    .boxContent h2 {
+        font-size: 15px;
+    }
+    
+    .boxContent h4 {
+        font-size: 12px;
+        color: #888;
+    }
+    
+    .point {
+        font-size: 13px;
+    }
+}

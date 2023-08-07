@@ -171,3 +171,148 @@
 .text a:hover {
     color: #203647;
 }
+
+@media screen and (max-width: 770px) {
+    .container {
+        margin: 30px 0;
+    }
+    
+    .signUpContainer {
+        margin: 30px 0;
+    }
+    
+    .imgContainer {
+        display: none;
+    }
+     
+    .formContainer {
+        padding: 40px 0;
+    }
+    
+    .icon {
+        font-size: 15px;
+        color: initial;
+    }
+    
+    .or {
+        margin: 15px 0;
+        font-size: 14px;
+    }
+    
+    .or::before {
+        width: 120px;
+    }
+    
+    .or::after {
+        width: 120px;
+    }
+    
+    .form{
+        width: 400px;
+    }
+    
+    .box input{
+        font-size: 14px;
+    }
+    
+    .box input::placeholder{
+        font-size: 13px;
+    }
+    
+    .text {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        flex-direction: column;
+        margin: 20px 0;
+        margin-bottom: 40px;
+    }
+    
+    .signUpContainer {
+        margin: 20px 0;
+        margin-bottom: 40px;
+    }
+    
+    .imgContainer {
+        display: none;
+    }
+     
+    .formContainer {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .title {
+        font-size: 16px;
+    }
+    
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .btn {
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 4px;
+    }
+    
+    
+    .icon {
+        font-size: 12px;
+    }
+    
+    .or {
+        margin: 10px 0;
+        font-size: 14px;
+    }
+    
+    .or::before {
+        width: 80px;
+    }
+    
+    .or::after {
+        width: 80px;
+    }
+    
+    .form{
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .signUp {
+        width: 100%;
+    }
+    
+    .form .input{
+        gap: 20px;
+    }
+    
+    .box input{
+        font-size: 14px;
+    }
+    
+    .forgot {
+        font-size: 10px;
+        font-weight: 300;
+    }
+    
+    .text {
+        width: 100%;
+        padding: 0 20px;
+        font-size: 12px;
+    }
+    
+    .text2 {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .text a{
+        font-size: 12px;
+    }
+}

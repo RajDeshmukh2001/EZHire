@@ -27,6 +27,16 @@ const Btn = styled.button`
     cursor: pointer;
   }
 
+  @media screen and (max-width: 770px) {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
 `;
 
 export default Button;

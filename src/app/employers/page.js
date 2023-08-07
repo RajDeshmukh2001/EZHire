@@ -25,7 +25,7 @@ const Employers = () => {
 
       <div className={styles.box}>
         <div className={styles.boxContent}>
-          <p className={styles.tag}>GET STARTED WITH EZHire</p>
+          <p className={styles.tag}>Get Started With EZHire</p>
           <h2>Post a job in minutes</h2>
           <h4>Revolutionize your hiring with our AI-powered algorithm.</h4>
           <p className={styles.point}><span><BiSolidChevronRightCircle /></span>Get unlimited applications</p>
@@ -34,7 +34,7 @@ const Employers = () => {
         </div>
 
         <div className={styles.boxContent}>
-          <p className={styles.tag}>HIRE FASTER, HIRE BETTER</p>
+          <p className={styles.tag}>Hire Faster, Hire Better</p>
           <h2>8 million startup-ready candidates</h2>
           <h4>All the tools you need to hire, all in one place.</h4>
           <p className={styles.point}><span><BiSolidChevronRightCircle /></span>Top tech talent</p>

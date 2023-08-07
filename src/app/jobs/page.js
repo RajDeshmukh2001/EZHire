@@ -41,14 +41,17 @@ const Jobs = () => {
           <label htmlFor="location" className={styles.label}>Location</label>
           <input type="text" className={styles.input} results="5" />
         </div>
+        
         <div className={styles.filter}>
           <label htmlFor="company" className={styles.label}>Company</label>
           <input type="text" className={styles.input} results="5" />
         </div>
+
         <div className={styles.filter}>
           <label htmlFor="industry" className={styles.label}>Industry</label>
           <input type="text" placeholder="Ex. Banking, Technology, etc." className={styles.input} results="5" />
         </div>
+
         <div className={styles.filter}>
           <label htmlFor="sort" className={styles.label}>Sort by</label>
           <select name="sort" className={styles.input}>
@@ -57,6 +60,7 @@ const Jobs = () => {
             <option value="Date Posted">Date Posted</option>
           </select>
         </div>
+
         <div className={styles.filter}>
           <label htmlFor="type" className={styles.label}>Job Type</label>
           <select name="sort" className={styles.input}>
@@ -68,6 +72,7 @@ const Jobs = () => {
             <option value="Internship">Internship</option>
           </select>
         </div>
+
         <div className={styles.filter}>
           <label htmlFor="experience" className={styles.label}>Experience</label>
           <select name="sort" className={styles.input}>

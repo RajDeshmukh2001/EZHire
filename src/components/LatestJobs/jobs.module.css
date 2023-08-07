@@ -79,3 +79,97 @@
     font-weight: 300;
     color: #666;
 }
+
+@media screen and (max-width: 770px) {
+    .container {
+        padding: 20px 0;
+        gap: 30px;
+    }
+    
+    .container h2 {
+        font-size: 18px;
+    }
+    
+    .jobsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .latest {
+        background: linear-gradient(0deg, rgba(9, 9, 121, 0) 0%, rgb(207, 227, 226) 100%);
+    }
+    
+    .description h2 {
+        font-size: 15px;
+    }
+    
+    .listingBox .description p {
+        font-size: 13px;
+    }
+    
+    .listingBox .new {
+        font-size: 11px;
+    }
+    
+    .jobLocation {
+        margin-top: 10px;
+    }
+    
+    .jobCity {
+        gap: 9px;
+    }
+    
+    .mark {
+        font-size: 12px;
+    }
+    
+    .jobCity p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px 0;
+        gap: 30px;
+    }
+    
+    .container h2 {
+        font-size: 18px;
+    }
+    
+    .jobsContainer {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+    
+    .latest {
+        border-radius: 4px;
+        padding: 20px;
+        background: linear-gradient(0deg, rgba(9, 9, 121, 0) 0%, rgb(207, 227, 226) 100%);
+    }
+
+    .description h2 {
+        font-size: 14px;
+    }
+    
+    .listingBox .description p {
+        font-size: 12px;
+    }
+    
+    .listingBox .new {
+        font-size: 10px;
+    }
+    
+    .jobLocation {
+        margin-top: 10px;
+    }
+    
+    .jobCity {
+        gap: 8px;
+    }
+    
+    .jobCity p {
+        font-size: 12px;
+    }
+}

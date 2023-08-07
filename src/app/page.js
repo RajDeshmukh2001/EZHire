@@ -7,7 +7,7 @@ import LatestJobs from '@/components/LatestJobs/LatestJobs';
 export default function Home() {
   return (
     <>
-    {/* Hero Section */}
+      {/* Hero Section */}
       <div className={styles.container}>
         <div className={styles.heroSection}>
           <div className={styles.left}>
@@ -39,6 +39,7 @@ export default function Home() {
           <div className={styles.right}>
             <div className={styles.image}>
               <Image src="/HeroSection.png" alt="Hero-Section" width={400} height={400} className={styles.img} />
+              <Image src="/hero_section.png" alt="Hero-Section" width={250} height={250} className={styles.responsive} />
             </div>
           </div>
         </div>

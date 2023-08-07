@@ -139,6 +139,10 @@
     z-index: 1;
 }
 
+.responsive {
+    display: none;
+}
+
 .section {
     width: 100%;
     margin: 40px 0;
@@ -161,7 +165,7 @@
 
 .company {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 30px;
 }
 
@@ -219,5 +223,196 @@
 
     to {
         transform: rotate(359deg);
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .container {
+        margin: 30px 0;
+    }
+    
+    .heroSection {
+        padding: 25px 40px;
+    }
+    
+    .left {
+        width: 100%;
+        gap: 20px;
+    }
+    
+    .tagline {
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 35px;
+    }
+    
+    .text {
+        width: 90%;
+        font-size: 14px;
+        line-height: 21px;
+    }
+    
+    .search {
+        border-radius: 4px;
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .numbers {
+        margin-top: 15px;
+    }
+    
+    .numbers h2 {
+        font-size: 21px;
+    }
+    
+    .numbers p {
+        font-size: 13px;
+    }
+    
+    .right::before {
+        display: none;
+    }
+    
+    .img {
+        display: none;
+    }
+    
+    .section {
+        margin: 15px 0;
+    }
+    
+    .companies {
+        gap: 20px;
+    }
+    
+    .title {
+        font-size: 18px;
+    }
+    
+    .company {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 22px;
+    }
+    
+    .imgBox {
+        margin: 15px 0;
+        height: 20px;
+    }
+    
+    .companyLogo {
+        width: 80px !important;
+        height: 30px !important;
+    }
+    
+    .latestListings {
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 10px 0;
+    }
+    
+    .heroSection {
+        flex-direction: column-reverse;
+        padding: 30px 20px;
+    }
+
+    .left {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .tagline {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        line-height: 28px;
+    }
+    
+    .text {
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .searchBar {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .search {
+        border-radius: 4px;
+        font-size: 12px;
+        letter-spacing: 0.6px;
+        font-weight: 400;
+    }
+    
+    .numbers {
+        margin-top: 15px;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    
+    .numbers h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .numbers p {
+        font-size: 12px;
+    }
+    
+    .right::before {
+        display: none;
+    }
+
+    .img {
+        display: none;
+    }
+
+    .responsive {
+        display: flex;
+    }
+
+    .section {
+        margin: 15px 0;
+    }
+    
+    .companies {
+        gap: 20px;
+        padding: 20px 0;
+    }
+    
+    .title {
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .company {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+    
+    .imgBox {
+        margin: 10px 0;
+        height: 20px;
+    }
+    
+    .companyLogo {
+        width: 60px !important;
+        height: 30px !important;
+    }
+    
+    .latestListings {
+        margin: 20px 0;
     }
 }

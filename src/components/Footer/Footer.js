@@ -9,7 +9,7 @@ const Footer = () => {
     <Container>
       <div className="footer">
         <div className="main">
-          <div className="links">
+          <div className="links grid-1">
             <Link href="/" className="logo">EZHire</Link>
             <p className="tagline">We always help our seekers find the best jobs and companies find the best candidates</p>
           </div>
@@ -33,7 +33,7 @@ const Footer = () => {
             <h3 className="title">Company</h3>
             <h4 className="link">Blog</h4>
             <h4 className="link">Partners</h4>
-            <h4 className="link">About Us</h4>
+            <Link href="/about"><h4 className="link">About Us</h4></Link>
             <h4 className="link">Contact Us</h4>
           </div>
 
@@ -158,6 +158,111 @@ const Container = styled.div`
     transform: scale(1.2);
     filter: grayscale(0);
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 770px) {
+    padding: 30px 40px;
+
+    .footer {
+      gap: 20px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-row-gap: 20px;
+      grid-column-gap: 20px;
+    }
+
+    .grid-1 {
+      grid-column: 1/5;
+    }
+
+    .tagline {
+      width: 100%;
+    }
+
+    .links {
+      max-width: 100%;
+      gap: 10px;
+    }
+
+    .title {
+      font-size: 14px;
+    }
+
+    .links .link {
+      font-size: 13px;
+    }
+
+    .social {
+      padding-top: 10px;
+    }
+
+    .copyright {
+      font-size: 13px;
+    }
+
+    .icons {
+      width: 22px !important;
+      height: 22px !important;
+      filter: grayscale(0);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 20px 30px;
+
+    .footer {
+      gap: 20px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-row-gap: 20px;
+      grid-column-gap: 30px;
+    }
+
+    .grid-1 {
+      grid-column: 1/3;
+    }
+
+    .tagline {
+      font-size: 12px;
+      font-weight: 350;
+      letter-spacing: 0.6px;
+      line-height: 20px;
+    }
+
+    .title {
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .links {
+      gap: 10px;
+    }
+
+    .links .link {
+      font-size: 12px;
+    }
+
+    .social {
+      padding-top: 15px;
+      flex-direction: column-reverse;
+      gap: 15px;
+    }
+
+    .copyright {
+      font-size: 12px;
+    }
+
+    .icons {
+      width: 20px !important;
+      height: 20px !important;
+      filter: grayscale(0);
+    }
   }
 `;
 
