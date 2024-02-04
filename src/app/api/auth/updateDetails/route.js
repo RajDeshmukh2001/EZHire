@@ -14,11 +14,11 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
-const config = {
-    api: {
-        bodyParser: false
-    }
-};
+// const config = {
+//     api: {
+//         bodyParser: false
+//     }
+// };
 
 export const saveFileToLocal = async (image, resume) => {
     const files = [image];
