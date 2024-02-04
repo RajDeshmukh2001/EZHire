@@ -2,8 +2,7 @@ import conn from "@/utils/db";
 import Job from "@/models/Job";
 import { NextResponse } from "next/server";
 
-
-export const config = {
+const config = {
     api: { bodyParser: false },
 };
 
@@ -36,3 +35,5 @@ export const POST = async (req) => {
         return new NextResponse(`${error} Failed to post job`, { status: 500 });
     }
 }
+
+export default config;

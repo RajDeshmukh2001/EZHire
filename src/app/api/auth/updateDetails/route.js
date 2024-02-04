@@ -129,3 +129,5 @@ export const PUT = async (req) => {
         return new NextResponse(`${error.message} - Something went wrong. Please try again.`, { status: 500 });
     }
 }
+
+export default config;
