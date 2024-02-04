@@ -1,0 +1,187 @@
+.myProfile {
+    padding: 40px;
+    padding-bottom: 0;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    gap: 50px 150px;
+}
+
+.imageInput {
+    display: flex;
+}
+
+.form input,
+.form textarea,
+.imageInput label {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.imageInput label {
+    cursor: pointer;
+}
+
+.form input[type=file] {
+    display: none;
+}
+
+.form textarea {
+    grid-column: 1/3;
+}
+
+/* .form input[type=file]::file-selector-button {
+    width: 120px;
+    margin-right: 15px;
+    padding: 13px 15px;
+    border: none;
+    color: #777;
+    background-color: rgba(4, 158, 230, 0.1);
+    transition: 1s;
+} */
+
+.resume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    grid-column: 1/3;
+    padding: 30px 0;
+    border: 1px dashed #bbb;
+    border-radius: 10px;
+}
+
+.icon {
+    font-size: 35px;
+    color: #049ee6;
+}
+
+.resumeInput {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.resumeInput label {
+    font-size: 18px;
+    color: #049ee6;
+    cursor: pointer;
+}
+
+.resumeInput p {
+    color: #777;
+}
+
+.conditions {
+    font-size: 13px;
+    font-weight: 400;
+    color: red;
+}
+
+.buttons {
+    grid-column: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 60px;
+}
+
+.btn {
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    transition: 0.6s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 569px) {
+    .myProfile {
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 8px;
+        border: 1px solid #bbb;
+    }
+    
+    .form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .imageInput {
+        width: 100%;
+        display: flex;
+    }
+    
+    .form input,
+    .form textarea,
+    .imageInput label {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .resume {
+        width: 100%;
+        gap: 6px;
+        padding: 15px 0;
+        border-radius: 4px;
+    }
+    
+    .icon {
+        font-size: 20px;
+    }
+
+    .resume h2 {
+        font-size: 15px;
+    }
+    
+    .resumeInput {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .resumeInput label {
+        font-size: 13px;
+    }
+    
+    .resumeInput p {
+        font-size: 12px;
+    }
+    
+    .conditions {
+        font-size: 11px;
+    }
+    
+    .buttons {
+        display: flex;
+        align-self: flex-end;
+        gap: 18px;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+}

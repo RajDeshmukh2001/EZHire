@@ -4,12 +4,8 @@
     align-items: center;
     justify-content: center;
     margin: 60px 0;
-    background: rgb(207, 227, 226);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-
-.signUpContainer {
-    margin: 40px 0;
+    background-color: rgb(207, 227, 226);
 }
 
 .imgContainer {
@@ -18,10 +14,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+.detailsBox {
+    justify-content: space-around;
 }
 
 .img {
     object-fit: cover;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #203647;
+}
+
+.details h3 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.details p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 }
  
 .formContainer {
@@ -69,9 +93,31 @@
     color: #203647;
 }
 
+.btn:hover .icon {
+    animation: bell 0.6s ease-in-out 1;
+}
+
 .icon {
     font-size: 16px;
     color: initial;
+}
+
+@keyframes bell {
+    0% {
+        transform: translateX(0);
+    }
+
+    20%, 60% {
+        transform: translateX(1px);
+    }
+    
+    40%, 80% {
+        transform: translateX(-1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .or {
@@ -119,6 +165,39 @@
     gap: 20px;
 }
 
+.box {
+    position: relative;
+}
+
+.errorMsg {
+    position: absolute;
+    margin-top: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: red;
+    letter-spacing: 0.6px;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.blindEye, .eye {
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    cursor: pointer;
+    color: #888;
+}
+
+.eye {
+    color: #203647;
+}
+
 .box input{
     width: 100%;
     padding: 8px 0;
@@ -126,6 +205,7 @@
     font-size: 15px;
     letter-spacing: 0.5px;
     transition: 0.5s ease-in-out;
+    background: transparent;
 }
 
 .box input:is(:focus) {
@@ -151,6 +231,27 @@
     color: #203647;
 }
 
+.formBtn {
+    margin-top: 5px;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    border-radius: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.formBtn:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 .text {
     width: 380px;
     font-size: 13px;
@@ -172,7 +273,7 @@
     color: #203647;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (min-width: 570px) and (max-width: 770px) {
     .container {
         margin: 30px 0;
     }
@@ -218,21 +319,26 @@
     .box input::placeholder{
         font-size: 13px;
     }
+
+    .formBtn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
     
     .text {
         width: 400px;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 569px) {
     .container {
         flex-direction: column;
-        margin: 20px 0;
+        margin: 24px 0;
         margin-bottom: 40px;
     }
     
     .signUpContainer {
-        margin: 20px 0;
+        margin: 24px 0;
         margin-bottom: 40px;
     }
     
@@ -294,11 +400,21 @@
     
     .box input{
         font-size: 14px;
+        border-bottom: 1px solid #bbb;
     }
+
+    .box input:is(:focus) {
+        border-bottom: 1px solid #203647;
+    } 
     
     .forgot {
         font-size: 10px;
         font-weight: 300;
+    }
+
+    .formBtn {
+        padding: 5px 10px;
+        font-size: 12px;
     }
     
     .text {

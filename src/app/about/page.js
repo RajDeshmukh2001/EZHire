@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import styles from './about.module.css';
 import { BsArrowRight } from 'react-icons/bs';
 
 const About = () => {
+
   return (
     <div className={styles.container}>
       <div className={styles.aboutUs}>

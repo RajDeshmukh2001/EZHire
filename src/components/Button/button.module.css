@@ -1,0 +1,35 @@
+.mainButton {
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    border-radius: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.mainButton:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 770px) {
+
+    .mainButton {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .mainButton {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}

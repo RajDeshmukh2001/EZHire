@@ -1,0 +1,210 @@
+.container {
+    margin: 50px 0;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.jobInformation {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+}
+
+.heading {
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 15px 50px;
+    color: #203647;
+    background-color: rgb(207, 227, 226);
+}
+
+.inputFields {
+    width: 100%;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 80px;
+}
+
+.inputFields input,
+.inputFields select,
+.inputFields textarea {
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.inputFields input{
+    text-transform: capitalize;
+}
+
+.links input {
+    text-transform: initial;
+}
+
+.inputFields select {
+    color: #777;
+}
+
+.inputFields select:is(:focus, :active) {
+    color: initial;
+}
+
+.inputFields select option:checked {
+    background-color: #203647;
+    color: #fff;
+}
+
+.or {
+    grid-column: 1/4;
+    text-align: center;
+    color: #777;
+}
+
+.dateFields {
+    grid-column: 1/4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.dates label {
+    color: #777;
+}
+
+.dates input {
+    width: 300px;
+    text-transform: initial;
+}
+
+.editor {
+    grid-column: 1/4;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    width: 100%;
+    text-align: end;
+    padding-right: 50px;
+}
+
+.btn {
+    margin: 0 30px;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    border-radius: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 569px) {
+    .container {
+        margin: 10px 0;
+    }
+    
+    .form {
+        gap: 20px;
+    }
+    
+    .jobInformation {
+        border-radius: 8px;
+    }
+    
+    .heading {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 10px 20px;
+    }
+    
+    .inputFields {
+        padding: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    
+    .inputFields input,
+    .inputFields select,
+    .inputFields textarea {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    .or {
+        font-size: 12px;
+        grid-column: unset;
+    }
+    
+    .dateFields {
+        width: 100%;
+        grid-column: unset;
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+    }
+    
+    .dates {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .dates label {
+        font-size: 12px;
+    }
+    
+    .dates input {
+        width: 100%;
+    }
+    
+    .editor {
+        grid-column: unset;
+        margin-bottom: 10px;
+    }
+    
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+        padding-right: 0;
+    }
+    
+    .btn {
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+}

@@ -1,0 +1,155 @@
+.deleteProfile {
+    margin: 50px 50px 0 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.warning {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 20px;
+    color: #ffb103;
+    border-radius: 4px;
+    border: 1px solid rgba(241, 142, 6, 0.81);
+    background-color: rgba(220, 128, 1, 0.16);
+}
+
+.warningIcon {
+    font-size: 18px;
+}
+
+.warning span {
+    font-weight: 600;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.form p {
+    font-size: 14px;
+}
+
+.form span {
+    color: red;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+}
+
+.password input {
+    font-size: 15px;
+}
+
+.blindEye {
+    cursor: pointer;
+    color: #777;
+}
+
+.eye {
+    cursor: pointer;
+    color: #203647;
+}
+
+.deleteBtn {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    color: #fff;
+    background-color: red;
+    transition: all 0.4s ease-in-out;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+    border: 1px solid red;
+    color: red;
+    background-color: #fff;
+}
+
+.deleteIcon {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 569px) {
+    .deleteProfile {
+        margin: 20px 0;
+        padding: 15px 10px;
+        border: 1px solid #bbb;
+        border-radius: 8px;
+        gap: 20px;
+    }
+    
+    .warning {
+        padding: 10px;
+    }
+    
+    .warningIcon {
+        display: none;
+    }
+
+    .warning p {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .form {
+        padding: 5px;
+    }
+    
+    .form p {
+        font-size: 12px;
+    }
+    
+    .form span {
+        text-transform: capitalize;
+        line-height: 1.5;
+    }
+    
+    .password {
+        padding: 6px 8px;
+    }
+    
+    .password input {
+        font-size: 13px;
+    }
+    
+    .blindEye {
+        font-size: 12px;
+    }
+    
+    .eye {
+        font-size: 12px;
+    }
+    
+    .deleteBtn {
+        font-size: 12px;
+        margin-top: 15px;
+        gap: 5px;
+        padding: 6px 8px;
+    }
+    
+    .deleteIcon {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,386 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: rgb(207, 227, 226);
+}
+
+.details {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.details h2 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #203647;
+}
+
+.rows {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.tagline h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #203647;
+}
+
+.tagline p {
+    font-size: 14px;
+    color: #444;
+}
+
+.formContainer {
+    flex: 1;
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+}
+
+.title {
+    color: #203647;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    background-color: transparent;
+    border: 1px solid #bbb;
+    padding: 8px 14px;
+    color: #888;
+    letter-spacing: 0.5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.5s ease-in;
+}
+
+.btn:hover {
+    border: 1px solid #203647;
+    color: #203647;
+}
+
+.btn:hover .icon {
+    animation: bell 0.6s ease-in-out 1;
+}
+
+.icon {
+    font-size: 16px;
+    color: initial;
+}
+
+@keyframes bell {
+    0% {
+        transform: translateX(0);
+    }
+
+    20%, 60% {
+        transform: translateX(1px);
+    }
+    
+    40%, 80% {
+        transform: translateX(-1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.or {
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #888;
+    position: relative;
+}
+
+.or::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 40px;
+    width: 150px;
+    height: 0.8px;
+    background-color: #888;
+}
+
+.or::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    width: 150px;
+    height: 0.8px;
+    background-color: #888;
+}
+
+.form{
+    position: relative;
+    width: 380px;
+    text-align: center;
+}
+
+.signUp {
+    width: 405px;
+}
+
+.form .input{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.box {
+    position: relative;
+}
+
+.errorMsg {
+    position: absolute;
+    margin-top: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: red;
+    letter-spacing: 0.6px;
+}
+
+.password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.blindEye, .eye {
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    cursor: pointer;
+    color: #888;
+}
+
+.eye {
+    color: #203647;
+}
+
+.box input{
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1.5px solid #bbb;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: 0.5s ease-in-out;
+    background: transparent;
+}
+
+.box input:is(:focus) {
+    border-bottom: 1.5px solid #203647;
+} 
+
+.box input::placeholder{
+    color: #888;
+    font-size: 14px;
+}
+
+.forgot {
+    margin-top: -5px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+    transition: 0.5s ease-in;
+}
+
+.forgot:hover {
+    cursor: pointer;
+    color: #203647;
+}
+
+.formBtn {
+    margin-top: 5px;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    border-radius: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.formBtn:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.text {
+    width: 380px;
+    font-size: 13px;
+    color: #888;
+}
+
+.text2 {
+    width: 405px;
+}
+
+.text a{
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+    transition: 0.5s ease-in;
+}
+
+.text a:hover {
+    color: #203647;
+}
+
+@media screen and (max-width: 569px) {
+    .container {
+        flex-direction: column-reverse;
+        margin: 10px 0 20px 0;
+        background-color: #fff;
+    }
+    
+    .details {
+        display: none;
+    }
+    
+    .formContainer {
+        padding: 20px 0;
+        gap: 25px;
+    }
+    
+    .title {
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
+    .btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    .icon {
+        font-size: 14px;
+    }
+    
+    .or {
+        margin: 10px 0;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    
+    .or::before {
+        top: 10px;
+        left: 40px;
+        width: 80px;
+    }
+    
+    .or::after {
+        top: 10px;
+        right: 40px;
+        width: 80px;
+    }
+    
+    .form{
+        width: 80%;
+    }
+    
+    .signUp {
+        width: 80%;
+    }
+    
+    .form .input{
+        gap: 15px;
+    }
+    
+    .errorMsg {
+        position: absolute;
+        margin-top: 2px;
+        font-size: 11px;
+        font-weight: 500;
+        color: red;
+        letter-spacing: 0.6px;
+    }
+    
+    .blindEye, .eye {
+        font-size: 14px;
+        right: 5px;
+        bottom: 5px;
+    }
+    
+    .box input{
+        padding: 8px 0;
+        border-bottom: 1px solid #bbb;
+        font-size: 14px;
+        letter-spacing: 0.4px;
+    }
+    
+    .box input:is(:focus) {
+        border-bottom: 1px solid #203647;
+    } 
+    
+    .box input::placeholder{
+        font-size: 12px;
+    }
+    
+    .forgot {
+        margin-top: -2px;
+        font-size: 10.2px;
+        letter-spacing: 0.2px;
+    }
+    
+    .formBtn {
+        margin-top: 5px;
+        padding: 6px 10px;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+    .text {
+        width: 100%;
+        font-size: 11px;
+        text-align: center;
+    }
+    
+    .text2 {
+        width: 100%;
+    }
+    
+    .text a{
+        font-size: 11.5px;
+        font-weight: 500;
+    }
+}

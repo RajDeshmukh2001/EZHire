@@ -35,7 +35,8 @@ a {
 button,
 input,
 select,
-option {
+option,
+textarea {
     font-family: inherit;
 }
 
@@ -49,7 +50,7 @@ option {
     justify-content: space-between;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 569px) {
     .container {
         padding: 0 25px;
     }

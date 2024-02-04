@@ -18,158 +18,289 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 60px 40px;
 }
 
 .latest {
+    border: 1px solid #bbb;
+    padding: 15px 20px;
     background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    background-color: rgb(207, 227, 226);
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
+}
+
+.latest:hover {
+    transform: translateY(-4px);
 }
 
 .listingBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     padding-bottom: 15px;
     border-bottom: 0.5px solid #bbb;
 }
 
-.description h2 {
-    font-size: 16px;
-    font-weight: 600;
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.listingBox .description p {
+.description h2 {
     font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.description p {
+    font-size: 12px;
     font-weight: 400;
     color: #007cc7;
+    text-transform: capitalize;
 }
 
-.listingBox .new {
-    margin-top: -16px;
-    font-size: 12px;
+.jobType {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new {
+    font-size: 11px;
     font-weight: 500;
     color: red;
 }
 
-.jobLocation {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.jobType h2 {
+    font-size: 13px;
+    font-weight: 400;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: #049ee6;
+    background-color: rgba(4, 158, 230, 0.1);
 }
 
-.jobCity {
+.jobBody {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 15px;
+}
+
+.jonInfo {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.locationAndSalary {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-.mark {
-    color: #888;
+.icon {
+    font-size: 12px;
 }
 
-.jobCity p {
+.locationAndSalary p {
     font-size: 13px;
-    font-weight: 300;
-    color: #666;
 }
 
-@media screen and (max-width: 770px) {
+.jobSkills {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 8px;
+}
+
+.jobSkills p {
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.skills {
+    padding: 2px 8px;
+    border-radius: 2.5px;
+    color: #203647;
+    background-color: rgba(4, 158, 230, 0.1);
+}
+
+.viewJob {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.viewJob p {
+    color: #707f8c;
+    font-size: 11.5px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.viewJob a {
+    padding: 4px 15px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    color: #203647;
+    border: 1px solid #203647;
+    border-radius: 0;
+    transition: 0.6s ease-in-out;
+}
+
+.viewJob a:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 570px) and (max-width: 770px) {
     .container {
         padding: 20px 0;
         gap: 30px;
     }
-    
+
     .container h2 {
         font-size: 18px;
     }
-    
+
     .jobsContainer {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .latest {
-        background: linear-gradient(0deg, rgba(9, 9, 121, 0) 0%, rgb(207, 227, 226) 100%);
-    }
-    
+
     .description h2 {
         font-size: 15px;
     }
-    
+
     .listingBox .description p {
         font-size: 13px;
     }
-    
+
     .listingBox .new {
         font-size: 11px;
     }
-    
+
     .jobLocation {
         margin-top: 10px;
     }
-    
+
     .jobCity {
         gap: 9px;
     }
-    
+
     .mark {
         font-size: 12px;
     }
-    
+
     .jobCity p {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 569px) {
     .container {
         width: 100%;
         padding: 10px 0;
-        gap: 30px;
+        gap: 25px;
     }
-    
+
     .container h2 {
-        font-size: 18px;
+        font-size: 15px;
     }
-    
+
     .jobsContainer {
         grid-template-columns: repeat(1, 1fr);
-        gap: 30px;
+        gap: 20px;
     }
-    
+
     .latest {
-        border-radius: 4px;
-        padding: 20px;
-        background: linear-gradient(0deg, rgba(9, 9, 121, 0) 0%, rgb(207, 227, 226) 100%);
+        padding: 15px;
+        border-radius: 6px;
+    }
+
+    .listingBox {
+        gap: 6px;
+        padding-bottom: 14px;
+    }
+
+    .header {
+        gap: 10px;
     }
 
     .description h2 {
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: 500;
     }
-    
-    .listingBox .description p {
-        font-size: 12px;
+
+    .description p {
+        font-size: 11.5px;
     }
-    
-    .listingBox .new {
+
+    .jobType {
+        gap: 10px;
+    }
+
+    .new {
         font-size: 10px;
     }
-    
-    .jobLocation {
-        margin-top: 10px;
+
+    .jobType h2 {
+        font-size: 11.5px;
+        padding: 4px 6px;
+        border-radius: 2px;
     }
-    
-    .jobCity {
+
+    .jobBody {
+        min-height: unset;
+        gap: 15px;
+        padding-top: 14px;
+    }
+
+    .locationAndSalary {
         gap: 8px;
     }
-    
-    .jobCity p {
-        font-size: 12px;
+
+    .icon {
+        font-size: 10px;
+    }
+
+    .locationAndSalary p {
+        font-size: 11.5px;
+    }
+
+    .jobSkills {
+        gap: 8px;
+    }
+
+    .jobSkills p {
+        font-size: 11px;
+    }
+
+    .skills {
+        padding: 2px 5px;
+        border-radius: 2px;
+    }
+
+    .viewJob p {
+        font-size: 11px;
+    }
+
+    .viewJob a {
+        padding: 4px 8px;
+        font-size: 11.5px;
     }
 }

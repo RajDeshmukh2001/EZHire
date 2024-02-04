@@ -1,142 +1,70 @@
 'use client';
 
-import Button from '../Button/Button';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './jobs.module.css';
-import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { SlLocationPin } from 'react-icons/sl';
+import { useJobContext } from '@/context/JobContext/JobContext';
+import { PiClockClockwise, PiMoney } from 'react-icons/pi';
+import moment from 'moment';
 
 const LatestJobs = () => {
+    const { jobs, isLoading } = useJobContext();
+
     return (
         <div className={styles.container}>
             <h2>Recent Listings</h2>
 
             <div className={styles.jobsContainer}>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
+                {isLoading && <p>Loading...</p>}
+
+                {jobs.slice(0, 3).map((job) => (
+                    <div className={styles.latest} key={job._id}>
+                        <div className={styles.listingBox}>
+                            <div className={styles.header}>
+                                <div className={styles.imgBox}>
+                                    <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
+                                </div>
+
+                                <div className={styles.description}>
+                                    <h2>{job.job_title}</h2>
+                                    <p>{job.company_name}</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.jobType}>
+                                <p className={styles.new}>New</p>
+                                <h2>{job.job_type}</h2>
+                            </div>
                         </div>
 
-                        <div className={styles.description}>
-                            <h2>React Frontend Developer</h2>
-                            <p>Indra Company</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
+                        <div className={styles.jobBody}>
+                            <div className={styles.jonInfo}>
+                                <div className={styles.locationAndSalary}>
+                                    <SlLocationPin className={styles.icon} />
+                                    <p>{job.location}</p>
+                                </div>
 
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Pune - Maharashtra</p>
-                        </div>
-                        <Button value="View" />
-                    </div>
-                </div>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
-                        </div>
+                                <div className={styles.locationAndSalary}>
+                                    <PiMoney className={styles.icon} />
+                                    <p>{job.salary ? job.salary : job.stipend}</p>
+                                </div>
+                            </div>
 
-                        <div className={styles.description}>
-                            <h2>PHP, Laraval Developer</h2>
-                            <p>Infosys</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
+                            <div className={styles.jobSkills}>
+                                <p>Skills - </p>
+                                {job.skills.split(', ').map((skill, index) => (
+                                    <p key={index} className={styles.skills}>{skill.replace('.', '')}</p>
+                                ))}
+                            </div>
 
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Delhi</p>
+                            <div className={styles.viewJob}>
+                                <p><PiClockClockwise />{moment(job.createdAt).fromNow()}</p>
+                                <Link href={`/jobs/${job._id}`}>View</Link>
+                            </div>
                         </div>
-                        <Button value="View" />
                     </div>
-                </div>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
-                        </div>
-
-                        <div className={styles.description}>
-                            <h2>Sales Manager</h2>
-                            <p>EdX Infotech</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
-
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Chennai - Tamil Nadu</p>
-                        </div>
-                        <Button value="View" />
-                    </div>
-                </div>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
-                        </div>
-
-                        <div className={styles.description}>
-                            <h2>Data Analyst</h2>
-                            <p>TCS</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
-
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Bangolore - Karnataka</p>
-                        </div>
-                        <Button value="View" />
-                    </div>
-                </div>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
-                        </div>
-
-                        <div className={styles.description}>
-                            <h2>Software Developer</h2>
-                            <p>TCS</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
-
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Mumbai - Maharashtra</p>
-                        </div>
-                        <Button value="View" />
-                    </div>
-                </div>
-                <div className={styles.latest}>
-                    <div className={styles.listingBox}>
-                        <div className={styles.imgBox}>
-                            <Image src="/suitcase.png" alt="suitcase" width={30} height={30} />
-                        </div>
-
-                        <div className={styles.description}>
-                            <h2>Next Js Frontend Developer</h2>
-                            <p>Accenture</p>
-                        </div>
-                        <p className={styles.new}>New</p>
-                    </div>
-
-                    <div className={styles.jobLocation}>
-                        <div className={styles.jobCity}>
-                            <HiOutlineLocationMarker className={styles.mark} />
-                            <p>Kochi - Kerala</p>
-                        </div>
-                        <Button value="View" />
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     )

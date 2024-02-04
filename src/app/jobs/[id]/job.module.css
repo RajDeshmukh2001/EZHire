@@ -1,0 +1,408 @@
+.container {
+    margin: 50px 0;
+    width: 100%;
+}
+
+.jobHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 50px;
+    border-radius: 10px;
+    background-color: rgb(207, 227, 226);
+}
+
+.logoAndTitle {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    border: 1px solid #707f8c;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.suitcase {
+    font-size: 45px;
+    color: #203647;
+}
+
+.title h3 {
+    font-size: 25px;
+    text-transform: capitalize;
+    color: #203647;
+    transition: 0.4s ease-in-out;
+}
+
+.title h3:hover {
+    color: #049ee6;
+}
+
+.title p {
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-top: 5px;
+    color: #049ee6;
+}
+
+.type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.jobType {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 4px 15px;
+    border: 0.8px solid #049ee6;
+    border-radius: 4px;
+    color: #049ee6;
+    background-color: rgba(4, 158, 230,0.1);
+}
+
+.applicant {
+    font-size: 14px;
+    font-weight: 400;
+    color: #707f8c;
+}
+
+.jobBody {
+    margin-top: 60px;
+    display: flex;
+    gap: 30px;
+}
+
+.flexLeft {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.aboutJob,
+.aboutCompany {
+    padding: 30px 50px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+}
+
+.aboutJob h4,
+.aboutCompany h4 {
+    font-weight: 600;
+}
+
+.aboutJob p,
+.aboutCompany p {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 20px;
+    letter-spacing: 0.3px;
+    line-height: 24px;
+    white-space: pre-wrap;
+}
+
+
+.links {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13.5px;
+}
+
+.links a {
+    color: #049ee6;
+    transition: 0.3s ease-in-out;
+}
+
+.links a:hover {
+    color: #203647;
+}
+
+.flexRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jobInfo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 30px 40px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+}
+
+.gridColumn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon,
+.work {
+    font-size: 25px;
+    color: #049ee6;
+    opacity: 0.6;
+}
+
+.work {
+    font-size: 22px;
+}
+
+.info p,
+.skillTitle p {
+    font-size: 13px;
+    color: #707f8c;
+}
+
+.info h3 {
+    font-size: 14.5px;
+    font-weight: 500;
+    margin-top: 3px;
+    color: #203647;
+}
+
+.skillsColumn {
+    grid-column: 1/3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 10px
+}
+
+.skillTitle {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+}
+
+.skillsColumn h3 {
+    font-size: 13px;
+    font-weight: normal;
+    text-transform: capitalize;
+    padding: 3px 13px;
+    border: 0.8px solid #049ee6;
+    border-radius: 4px;
+    color: #049ee6;
+    background-color: rgba(4, 158, 230,0.1);
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.buttons a {
+    width: 100%;
+}
+
+.buttons button {
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #203647;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    transition: 0.6s ease-in-out;
+}
+
+.buttons button:hover {
+    background-color: #203647;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media screen and (max-width: 569px) {
+    .container {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .jobHeader {
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 7px;
+        padding: 16px 10px;
+        border-radius: 8px;
+    }
+    
+    .logoAndTitle {
+        gap: 10px;
+    }
+    
+    .logo {
+        padding: 8px;
+    }
+    
+    .suitcase {
+        font-size: 18px;
+    }
+    
+    .title h3 {
+        font-size: 14px;
+    }
+    
+    .title p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    
+    .type {
+        display: flex;
+        flex-direction: row-reverse;
+        align-self: flex-end;
+        gap: 15px;
+    }
+    
+    .jobType {
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 4px 5px;
+        border-radius: 3px;
+    }
+    
+    .applicant {
+        font-size: 12px;
+    }
+    
+    .jobBody {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        border-radius: 8px;
+    }
+    
+    .flexLeft {
+        flex: 1;
+        gap: 15px;
+    }
+    
+    .aboutJob,
+    .aboutCompany {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .aboutJob h4,
+    .aboutCompany h4 {
+        font-size: 13px;
+    }
+    
+    .aboutJob p,
+    .aboutCompany p {
+        font-size: 12px;
+        margin-top: 8px;
+        letter-spacing: 0.2px;
+        line-height: 17px;
+        white-space: pre-wrap;
+    }
+    
+    .links {
+        margin: 8px 0;
+        gap: 5px;
+        font-size: 11.5px;
+    }
+    
+    .flexRight {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .jobInfo {
+        gap: 15px 0;
+        padding: 20px;
+    }
+    
+    .gridColumn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .icon,
+    .work {
+        font-size: 15px;
+    }
+    
+    .work {
+        font-size: 14px;
+    }
+    
+    .info p,
+    .skillTitle p {
+        font-size: 11.5px;
+    }
+    
+    .info h3 {
+        font-size: 12px;
+    }
+    
+    .skillsColumn {
+        gap: 10px
+    }
+    
+    .skillTitle {
+        gap: 8px;
+    }
+    
+    .skillsColumn h3 {
+        font-size: 11px;
+        padding: 3px 6px;
+        border-radius: 2px;
+        letter-spacing: 0.3px;
+    }
+    
+    .buttons {
+        margin-top: 8px;
+        gap: 15px;
+    }
+    
+    .buttons button {
+        padding: 5px 14px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+}

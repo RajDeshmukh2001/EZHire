@@ -88,9 +88,9 @@
     color: #007cc7;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (min-width: 570px) and (max-width: 770px) {
     .container {
-        margin: 20px 0;
+        margin: 15px 0;
     }
     
     .header {
@@ -151,9 +151,9 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 569px) {
     .container {
-        margin: 20px 0;
+        margin: 10px 0;
     }
     
     .header {
@@ -189,13 +189,14 @@
     }
     
     .box {
-        margin: 40px 0;
+        margin: 30px 0;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
     }
     
     .boxContent {
-        padding: 0 30px;
+        border: 1px solid #888;
+        padding: 20px;
         gap: 15px;
     }
     
