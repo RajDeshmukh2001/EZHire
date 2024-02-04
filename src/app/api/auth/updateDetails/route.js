@@ -14,7 +14,7 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
-export const config = {
+const config = {
     api: {
         bodyParser: false
     }
