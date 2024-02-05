@@ -70,6 +70,15 @@
     color: #fff;
 }
 
+.links a:nth-of-type(5),
+.links a:nth-of-type(6) {
+    display: none;
+}
+
+.logoutBtn {
+    display: none;
+}
+
 .buttons {
     display: flex;
     align-items: center;
@@ -203,8 +212,14 @@
     }
 
     .logoutBtn {
+        display: flex;
         font-size: 20px;
         background-color: transparent;
+    }
+
+    .loginBtn,
+    .registerBtn {
+        display: flex;
     }
 
     .links a::before {

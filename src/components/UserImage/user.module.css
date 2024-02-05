@@ -9,8 +9,16 @@
     transition: all 0.15s ease;
 }
 
+.user a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .userImg {
+    border: 2px solid #bbb;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .name {

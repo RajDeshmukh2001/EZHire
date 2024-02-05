@@ -22,8 +22,8 @@ const UserImage = () => {
                             <Image 
                                 src={user ? user : (userInfo ? userInfo?.image_url : employerInfo?.image_url)} 
                                 alt="user" 
-                                width={35} 
-                                height={35} 
+                                width={40} 
+                                height={40} 
                                 className={styles.userImg} />
                         </Link> 
                         :

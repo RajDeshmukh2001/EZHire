@@ -35,21 +35,21 @@ const Navbar = () => {
           <Link href="/jobs" onClick={handleClose}>Jobs</Link>
           <Link href="/employers" onClick={handleClose}>Employers</Link>
           <Link href="/about" onClick={handleClose}>About</Link>
-          {session.status === 'authenticated' ? 
-          (<button 
-            className={styles.logoutBtn} 
-            onClick={() => {
-              signOut({ callbackUrl: '/login', redirect: false })
-              handleClose()
-            }}
-          >
-            Logout
-          </button>) 
-          : 
-          (<>
-            <Link href="/login" onClick={handleClose}>Login</Link>
-            <Link href="/register" onClick={handleClose}>Sign Up</Link>
-          </>)
+          {session.status === 'authenticated' ?
+            (<button
+              className={styles.logoutBtn}
+              onClick={() => {
+                signOut({ callbackUrl: '/login', redirect: false })
+                handleClose()
+              }}
+            >
+              Logout
+            </button>)
+            :
+            (<>
+              <Link href="/login" onClick={handleClose}>Login</Link>
+              <Link href="/register" onClick={handleClose}>Sign Up</Link>
+            </>)
           }
         </div>
 
