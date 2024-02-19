@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import Error from "@/alerts/Error/Error";
-import styles from "../styles/styles.module.css";
-import Success from "@/alerts/Success/Success";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import styles from "../styles/styles.module.css";
 import { signIn, useSession } from "next-auth/react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
@@ -15,8 +14,6 @@ const SignIn = () => {
   const session = useSession();
 
   const [show, setShow] = useState("password");
-  const [err, setErr] = useState("");
-  const [success, setSuccess] = useState("");
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -24,7 +21,7 @@ const SignIn = () => {
 
   const router = useRouter();
   if (session.status === "authenticated") {
-    router.push("/profile");
+    router.push("/profile/editProfile");
   }
 
   const handleChange = (e) => {
@@ -41,17 +38,16 @@ const SignIn = () => {
       const res = await signIn("employer-credentials", {
         email: inputs.email,
         password: inputs.password,
-        callbackUrl: '/profile',
         redirect: false,
+        callbackUrl: '/profile/editProfile',
       });
 
       if (res.error) {
-        setErr(res.error)
+        toast.error(res.error)
       } else {
-        setSuccess("Login successfull");
-        router.push(res.url);
+        toast.success("Login successfull");
+        e.target.reset();
       }
-      e.target.reset();
     } catch (error) {
       console.error(error);
     }
@@ -61,16 +57,8 @@ const SignIn = () => {
     show === "password" ? setShow("text") : setShow("password");
   };
 
-  const handleClose = () => {
-    setErr(false);
-    setSuccess(false);
-  };
-
   return (
     <>
-      {success && <Success successMsg={success} onClose={handleClose} />}
-      {err && <Error errorMsg={err} onClose={handleClose} />}
-
       <div className={styles.container}>
         <div className={styles.details}>
           <h2>Why Choose EZHire Job Posting?</h2>
@@ -114,15 +102,6 @@ const SignIn = () => {
         {/* Form Content */}
         <div className={styles.formContainer}>
           <h2 className={styles.title}>SIGN IN (Employer)</h2>
-
-          <div className={styles.buttons}>
-            <button className={styles.btn} onClick={() => signIn("google", { callbackUrl: "/employers" })}>
-              <FcGoogle className={styles.icon} />
-              Sign In with Google
-            </button>
-          </div>
-
-          <h3 className={styles.or}>Or</h3>
 
           <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.input}>

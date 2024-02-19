@@ -1,31 +1,34 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
-import styles from './jobsPosted.module.css';
-import Success from '@/alerts/Success/Success';
-import MyProfile from '@/components/MyProfile/MyProfile';
 import { format } from 'date-fns';
-import { IoEyeSharp } from 'react-icons/io5';
+import { toast } from 'react-toastify';
+import { useContext, useState } from 'react';
+import styles from './jobsPosted.module.css';
+import Button from '@/components/Button/Button';
+import { PiDotsThreeVerticalBold } from 'react-icons/pi';
+import ProfileMenu from "@/components/ProfileMenu/ProfileMenu";
 import { UserContext } from '@/context/UserContext/UserContext';
 import { useJobContext } from '@/context/JobContext/JobContext';
-import { BiSolidEditAlt } from 'react-icons/bi';
-import { MdDeleteForever } from 'react-icons/md';
-import { useContext, useEffect, useState } from 'react';
-import Button from '@/components/Button/Button';
+
 
 const JobsPosted = () => {
     const { employerInfo } = useContext(UserContext);
     const { jobs, getJobs } = useJobContext();
-    const [success, setSuccess] = useState("");
+    const [show, setShow] = useState(false);
 
     const jobsPosted = jobs.filter((e) => employerInfo?._id === e.employerId);
+
+    const handleDisplay = (index) => {
+        setShow((prevIndex) => (prevIndex === index ? false : index));
+    };
 
     const handleDelete = async (id) => {
         try {
             const res = await fetch(`/api/postJob/${id}`, { method: 'DELETE' });
             const deleteMessage = await res.text();
             if (res) {
-                setSuccess(deleteMessage);
+                toast.success(deleteMessage);
             }
             getJobs();
         } catch (error) {
@@ -33,25 +36,20 @@ const JobsPosted = () => {
         }
     };
 
-    const handleClose = () => {
-        setSuccess(false);
-    };
-
     return (
-        <>
-            {success && <Success successMsg={success} onClose={handleClose} />}
-            <MyProfile>
-                <div className={styles.jobsPosted}>
-                    {
-                        jobsPosted?.length === 0 && 
-                        <div className={styles.noJobs}>
-                            <p>No jobs has been posted yet.</p>
-                            <Link href="/postJobs"><Button value="Post Jobs" /></Link>
-                        </div>
-                    }
+        <ProfileMenu>
+            <div className={styles.jobsPosted}>
+                {
+                    jobsPosted?.length === 0 &&
+                    <div className={styles.noJobs}>
+                        <p>No jobs has been posted yet.</p>
+                        <Link href="/postJobs"><Button value="Post Jobs" /></Link>
+                    </div>
+                }
 
-                    {jobsPosted.map((job) => (
-                        <div className={styles.jobs} key={job._id}>
+                {jobsPosted.map((job, index) => (
+                    <div className={styles.jobs} key={job._id}>
+                        <div className={styles.job}>
                             <div className={styles.title}>
                                 <h1>{job.job_title}</h1>
                                 <p>{job.job_type}</p>
@@ -66,17 +64,23 @@ const JobsPosted = () => {
                                 <p>Applications</p>
                                 <h3>20</h3>
                             </div>
+                        </div>
 
-                            <div className={styles.buttons}>
-                                <Link href={`/jobs/${job._id}`}><IoEyeSharp /></Link>
-                                <button><BiSolidEditAlt /></button>
-                                <button onClick={() => handleDelete(job._id)}><MdDeleteForever /></button>
+                        <div className={styles.options}>
+                            <div className={styles.dotIcon} onClick={() => handleDisplay(index)}>
+                                <PiDotsThreeVerticalBold />
+                            </div>
+
+                            <div className={show === index ? styles.showOptions : styles.hideOptions} onClick={handleDisplay}>
+                                <Link href={`/jobs/${job._id}`} className={styles.view}>View</Link>
+                                <button>Edit</button>
+                                <button className={styles.delete} onClick={() => handleDelete(job._id)}>Delete</button>
                             </div>
                         </div>
-                    ))}
-                </div>
-            </MyProfile>
-        </>
+                    </div>
+                ))}
+            </div>
+        </ProfileMenu>
     )
 }
 

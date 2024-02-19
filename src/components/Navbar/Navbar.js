@@ -31,25 +31,31 @@ const Navbar = () => {
         <div className={links === 'hide' ? styles.links : styles.responsiveLinks}>
           <RxCross2 className={styles.cross} onClick={handleClose} />
           <Link href="/" onClick={handleClose}>Home</Link>
-          {session.status === 'authenticated' && <Link href="/profile" onClick={handleClose}>Profile</Link>}
           <Link href="/jobs" onClick={handleClose}>Jobs</Link>
           <Link href="/employers" onClick={handleClose}>Employers</Link>
           <Link href="/about" onClick={handleClose}>About</Link>
           {session.status === 'authenticated' ?
-            (<button
-              className={styles.logoutBtn}
-              onClick={() => {
-                signOut({ callbackUrl: '/login', redirect: false })
-                handleClose()
-              }}
-            >
-              Logout
-            </button>)
+            (
+              <>
+                <Link href="/profile" onClick={handleClose}>Profile</Link>
+                <button
+                  className={styles.logoutBtn}
+                  onClick={() => {
+                    signOut({ callbackUrl: '/login', redirect: false })
+                    handleClose()
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )
             :
-            (<>
-              <Link href="/login" onClick={handleClose}>Login</Link>
-              <Link href="/register" onClick={handleClose}>Sign Up</Link>
-            </>)
+            (
+              <>
+                <Link href="/login" onClick={handleClose}>Login</Link>
+                <Link href="/register" onClick={handleClose}>Sign Up</Link>
+              </>
+            )
           }
         </div>
 

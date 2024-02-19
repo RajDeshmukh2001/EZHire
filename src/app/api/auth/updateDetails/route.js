@@ -1,12 +1,12 @@
 import os from 'os';
 import path from 'path';
 import fs from 'fs/promises';
-import { v4 as uuidv4 } from 'uuid';
-import { v2 as cloudinary } from 'cloudinary';
-import { NextResponse } from 'next/server';
-import User from '@/models/Users';
 import conn from '@/utils/db';
+import User from '@/models/Users';
+import { v4 as uuidv4 } from 'uuid';
 import Employer from '@/models/Employer';
+import { NextResponse } from 'next/server';
+import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -20,114 +20,139 @@ const config = {
     }
 };
 
+// Save files to local disk
 export const saveFileToLocal = async (image, resume) => {
-    const files = [image];
-    if (resume) {
-        files.push(resume);
-    }
-
-    const multipleBuffersPromise = files.map(async (file) => {
-        const data = await file.arrayBuffer();
-        const buffer = Buffer.from(data);
-        const name = uuidv4();
-        const ext = file.type.split('/')[1];
-
-        const tempDir = os.tmpdir();
-        const uploadDir = path.join(tempDir, `/${name}.${ext}`);
-        await fs.writeFile(uploadDir, buffer);
-
-        return { filepath: uploadDir, filename: file.name };
-    });
-
-    return await Promise.all(multipleBuffersPromise)
-}
-
-export const uploadFilesToCloudinary = async (files) => {
-    const multipleFilesPromise = files.map((file) => (
-        cloudinary.uploader.upload(file.filepath, { folder: 'recruitment' })
-    ))
-
-    const cloudinaryResponses = await Promise.all(multipleFilesPromise);
-
-    // After uploading to Cloudinary, delete the local temporary files
-    files.forEach((file) => {
-        fs.unlink(file.filepath);
-    });
-
-    return cloudinaryResponses;
-}
-
-export const getFiles = async () => {
     try {
-        const { resources } = await cloudinary.search
-            .expression('folder:recruitment/*')
-            .sort_by('created_at', 'desc')
-            .max_results(2)
-            .execute()
-        let resumeSecureUrl;
-        let imageSecureUrl;
-        let asset_id;
-        resources.map(resource => {
-            if (resource.format === 'pdf') {
-                resumeSecureUrl = resource.secure_url;
-                asset_id = resource.asset_id;
-            }
+        const files = [];
+        if (resume) files.push(resume);
+        if (image) files.push(image);
 
-            if (resource.format === 'jpg' || resource.format === 'jpeg' || resource.format === 'png') {
-                imageSecureUrl = resource.secure_url;
-            }
-        })
+        const multipleBuffersPromise = files.map(async (file) => {
+            const data = await file.arrayBuffer();
+            const buffer = Buffer.from(data);
+            const name = uuidv4();
+            const ext = file.type.split('/')[1];
 
-        return { resumeSecureUrl, imageSecureUrl, asset_id };
+            const tempDir = os.tmpdir();
+            const uploadDir = path.join(tempDir, `/${name}.${ext}`);
+            await fs.writeFile(uploadDir, buffer);
+
+            return { filepath: uploadDir, filename: name };
+        });
+
+        return await Promise.all(multipleBuffersPromise)
     } catch (error) {
         console.log(error.message);
+        throw new Error(`${error.message} - Error Saving files to Local Directory`);
     }
 }
 
-export const PUT = async (req) => {
-    let formData = await req.formData();
-    let body = Object.fromEntries(formData);
-    const { fullname, email, phone, designation, location, about, image, userEmail, resume } = body
-
+// Upload files to Cloudinary
+export const uploadFilesToCloudinary = async (files) => {
     try {
-        const uploadLocal = await saveFileToLocal(image, resume);
-        const uploadToCloudinary = await uploadFilesToCloudinary(uploadLocal);
-        const resultUrl = await getFiles();
-        const imageUrl = resultUrl.imageSecureUrl;
-        const resumeUrl = resultUrl.resumeSecureUrl;
-        const asset_id = resultUrl.asset_id;
+        const multipleFilesPromise = files.map((file) => (
+            cloudinary.uploader.upload(file.filepath, { folder: `recruitment` })
+        ))
+        const cloudinaryResponses = await Promise.all(multipleFilesPromise);
 
+        // After uploading to Cloudinary, delete the local temporary files
+        files.forEach((file) => {
+            fs.unlink(file.filepath);
+        });
+        return cloudinaryResponses;
+    } catch (error) {
+        console.log(error.message);
+        throw new Error(`${error.message} - Error Uploading files to Cloudinary`);
+    }
+}
+
+const PUT = async (req) => {
+    try {
+        let formData = await req.formData();
+        let body = Object.fromEntries(formData);
+        const { fullname, employerName, email, phone, designation, location, skills, link, about, image, resume } = body;
         await conn();
-        const user = await User.findOne({ email: userEmail });
+        const user = await User.findOne({ email });
+        const employer = await Employer.findOne({ email });
 
-        if (user) {
-            const updateFields = {
-                fullname,
-                email,
-                phone,
-                designation,
-                location,
-                about,
-                image_url: imageUrl,
-            };
-
-            const resumeData = {
-                asset_id,
-                resume_url: resumeUrl,
-                created_at: new Date(),
-                set_default: false,
-            }
-
-            const updateUser = await User.updateOne({ email: userEmail }, { $set: updateFields, $push: { resume: resumeData } });
-            if (updateUser) {
-                return new NextResponse('Profile updated successfully', { status: 200 })
-            }
-            console.log(updateUser);
+        const updateUserFields = {
+            fullname,
+            email,
+            phone,
+            designation,
+            location,
+            skills,
+            about,
         }
 
+        const updateEmployerFields = {
+            employerName,
+            email,
+            phone,
+            location,
+            link,
+            about,
+        }
+
+        if (!image && !resume) {
+            if (user) {
+                const updateUser = await User.updateOne({ email }, { $set: updateUserFields });
+                if (updateUser) return new NextResponse('Profile updated successfully', { status: 200 });
+            } else if (employer) {
+                const updateEmployer = await Employer.updateOne({ email }, { $set: updateEmployerFields });
+                if (updateEmployer) return new NextResponse('Profile updated successfully', { status: 200 });
+            } else {
+                return new NextResponse(`Account with ${email} not found`, { status: 400 });
+            }
+        } else {
+            let imageUrl, resumeUrl, asset_id;
+            const uploadLocal = await saveFileToLocal(image, resume);
+            const uploadToCloudinary = await uploadFilesToCloudinary(uploadLocal);
+
+            uploadToCloudinary.map((file) => {
+                if (file.format === 'pdf') {
+                    resumeUrl = file.secure_url;
+                    asset_id = file.asset_id;
+                }
+    
+                if (file.format === 'jpg' || file.format === 'jpeg' || file.format === 'png') {
+                    imageUrl = file.secure_url;
+                }
+            })
+
+            if (imageUrl) {
+                user ? updateUserFields.image_url = imageUrl : updateEmployerFields.image_url = imageUrl;
+            }
+
+            if (resumeUrl) {
+                user.resume.forEach((res) => {
+                    if (res.set_default === true) {
+                        res.set_default = false;
+                    }
+                });
+
+                var addResume = {
+                    asset_id,
+                    resume_url: resumeUrl,
+                    created_at: new Date(),
+                    set_default: true,
+                }
+            }
+
+            if (user) {
+                const updateUser = image && resume ? await User.updateOne({ email }, { $set: updateUserFields, $push: { resume: addResume } }) : await User.updateOne({ email }, { $set: updateUserFields });
+                if (updateUser) return new NextResponse('Profile updated successfully', { status: 200 });
+            } else if (employer) {
+                const updateEmployer = await Employer.updateOne({ email }, { $set: updateEmployerFields });
+                if (updateEmployer) return new NextResponse('Profile updated successfully', { status: 200 });
+            } else {
+                return new NextResponse(`Account with ${email} not found`, { status: 400 });
+            }
+        }
     } catch (error) {
+        console.log(error);
         return new NextResponse(`${error.message} - Something went wrong. Please try again.`, { status: 500 });
     }
 }
 
-export default config;
+export { PUT, config };

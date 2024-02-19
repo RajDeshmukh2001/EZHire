@@ -1,72 +1,65 @@
 .resumeContainer {
-    padding: 50px 0;
+    margin: 50px 30px;
+}
+
+.resume_grid {
+    padding: 0 20px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    gap: 60px;
+    gap: 25px;
 }
 
 .resume {
-    width: 100%;
-    padding: 30px;
-    border: 1px solid #bbb;
-    border-radius: 10px;
-}
-
-.resumeInfo {
+    padding: 20px;
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
+    border-radius: 8px;
+    border: 1px solid #bbb;
 }
 
 .resumeHeader {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
-.pdfIcon,
-.dotIcon {
+.pdfIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px;
-    border-radius: 5px;
+}
+
+.pdfIcon .icon {
+    padding: 2px;
+    color: #049ee6;
+    border-radius: 4px;
+    font-size: xx-large;
     border: 1px solid #049ee6;
     background-color: rgba(4, 158, 230, 0.1);
 }
 
-.icon {
-    font-size: 24px;
-    color: #049ee6;
-}
-
-.title {
+.resumeName .title {
     font-size: 16px;
-    font-weight: 400;
+    color: #203647;
+    /* max-width: 25ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
 }
 
-.date {
-    margin-top: 4px;
-    font-size: 14px;
-    color: #888;
+.resumeName .date {
+    margin-top: 2px;
+    color: #777;
+    font-size: smaller;
 }
 
-.resumeOptions {
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
-}
-
-.setDefault {
-    font-size: 13px;
-    letter-spacing: 0.4px;
-    font-weight: 500;
-    padding: 5px 15px;
-    color: #ffb103;
+.defaultOption .setDefault {
+    font-size: 13.4px;
+    padding: 3px 10px;
     border-radius: 20px;
-    border: 1px solid rgba(241, 142, 6, 0.81);
-    background-color: rgba(220, 128, 1, 0.16);
+    color: rgb(23, 137, 0);
+    background: #31f3002d;
+    border: 1px solid rgb(23, 137, 0);
 }
 
 .options {
@@ -74,174 +67,167 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
-    margin-right: 30px;
 }
 
-.dotIcon {
-    width: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.showOptions {
-    width: 100px;
-    position: absolute;
-    top: 40px;
+.options .dotIcon {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    border-radius: 5px;
-    border: 1px solid #bbb;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-    transition: all 0.3s ease;
-    background: #fff;
+    cursor: pointer;
+    padding: 4px 5px;
+    color: #049ee6;
+    border-radius: 4px;
+    border: 1px solid #049ee6;
+    background-color: rgba(4, 158, 230, 0.1);
 }
 
-.hideOptions {
+.options .showOptions {
+    position: absolute;
+    top: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1px;
+    z-index: 1;
+    border-radius: 4px;
+    background: #bbb;
+    border: 1px solid #bbb;
+}
+
+.options .showOptions::before {
+    content: "";
+    position: absolute;
+    top: -6.5px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    transform: rotate(45deg);
+    border-top: 1px solid #bbb;
+    border-left: 1px solid #bbb;
+}
+
+.options .hideOptions {
     display: none;
 }
 
-.view,
-.delete,
-.default {
-    font-size: 13px;
-    cursor: pointer;
-    width: 100%;
+.showOptions a,
+.showOptions p {
     text-align: center;
-    padding: 10px 15px;
-    border-bottom: 1px solid #bbb;
-    transition: 0.4s ease-in-out;
-    background-color: #fff;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 13.5px;
+    background: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.showOptions a:hover,
+.showOptions p:hover {
+    cursor: pointer;
+    color: #049ee6;
 }
 
 .view {
-    border-radius: 5px 5px 0 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .delete {
-    border: none;
-    border-radius: 0 0 5px 5px;
-}
-
-.view:hover,
-.delete:hover,
-.default:hover {
-    background-color: #efefef;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 @media screen and (max-width: 569px) {
     .resumeContainer {
-        padding: 15px 0;
+        width: 100%;
+        margin: 10px 0 70px;
+        padding: 4px 2px;
+    }
+    
+    .resume_grid {
+        padding: 0;
         gap: 20px;
     }
     
     .resume {
-        padding: 10px;
-        border-radius: 6px;
-    }
-    
-    .resumeInfo {
-        flex-direction: column;
-        gap: 10px;
-        overflow: hidden;
+        padding: 15px 10px;
+        display: flex;
+        justify-content: space-between;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .resumeHeader {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
     }
     
-    .pdfIcon,
-    .dotIcon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 3px;
+    .pdfIcon .icon {
+        padding: 1px;
+        border-radius: 3px;
+        font-size: 18px;
     }
     
-    .icon {
-        font-size: 14px;
-    }
-    
-    .title {
+    .resumeName .title {
         font-size: 12px;
+        max-width: 24ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
-    .date {
-        margin-top: 2px;
+    .resumeName .date {
         font-size: 10px;
+        margin-top: 2px;
+        color: #666;
     }
     
-    .resumeOptions {
-        width: 100%;
-        display: flex;
-        align-self: flex-end;
-        align-items: center;
-        gap: 20px;
-    }
-    
-    .setDefault {
+    .defaultOption .setDefault {
         font-size: 11px;
-        letter-spacing: 0.3px;
-        font-weight: 400;
-        padding: 3px 8px;
+        padding: 2px 6px;
+        border-radius: 20px;
     }
     
-    .options {
-        position: relative;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
-        margin-right: 30px;
+    .options .dotIcon {
+        font-size: 15px;
+        padding: 1px;
+        border-radius: 4px;
     }
     
-    .dotIcon {
-        width: 25px;
+    .options .showOptions {
+        top: 30px;
+        right: -6px;
+        width: 70px;
+        border-radius: 2.5px;
     }
     
-    .showOptions {
-        width: 100px;
-        position: absolute;
-        top: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        border-radius: 5px;
-        border: 1px solid #bbb;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-        transition: all 0.3s ease;
-        background: #fff;
-        z-index: 9999;
+    .options .showOptions::before {
+        top: -5.6px;
+        right: 9px;
+        width: 8px;
+        height: 8px;
     }
     
-    .hideOptions {
+    .options .hideOptions {
         display: none;
     }
     
-    .view,
-    .delete,
-    .default {
-        font-size: 13px;
-        cursor: pointer;
-        width: 100%;
-        text-align: center;
-        padding: 10px 15px;
-        border-bottom: 1px solid #bbb;
-        transition: 0.4s ease-in-out;
-        background-color: #fff;
+    .showOptions a,
+    .showOptions p {
+        padding: 6px 0;
+        font-size: 11px;
     }
     
     .view {
-        border-radius: 5px 5px 0 0;
+        border-top-left-radius: 2.5px;
+        border-top-right-radius: 2.5px;
     }
     
     .delete {
-        border: none;
-        border-radius: 0 0 5px 5px;
+        border-bottom-left-radius: 2.5px;
+        border-bottom-right-radius: 2.5px;
     }
+    
 }

@@ -1,11 +1,11 @@
-import Employer from "@/models/Employer";
-import Job from "@/models/Job";
-import User from "@/models/Users";
 import conn from "@/utils/db";
 import bcrypt from "bcryptjs";
+import Job from "@/models/Job";
+import User from "@/models/Users";
+import Employer from "@/models/Employer";
 import { NextResponse } from "next/server";
 
-export const DELETE = async (req) => {
+const DELETE = async (req) => {
     const { email, password } = await req.json();
 
     try {
@@ -43,3 +43,5 @@ export const DELETE = async (req) => {
         return new NextResponse(error.message, { status: 500 });
     }
 }
+
+export { DELETE };

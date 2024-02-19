@@ -1,5 +1,5 @@
 .container {
-    margin: 50px 0;
+    margin: 40px 0;
     width: 100%;
 }
 
@@ -76,23 +76,24 @@
 }
 
 .jobBody {
-    margin-top: 60px;
+    margin-top: 16px;
     display: flex;
-    gap: 30px;
+    gap: 16px;
 }
 
 .flexLeft {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 16px;
 }
 
 .aboutJob,
 .aboutCompany {
     padding: 30px 50px;
-    border: 1px solid #bbb;
+    background: #fff;
     border-radius: 10px;
+    border: 1px solid #bbb;
 }
 
 .aboutJob h4,
@@ -132,10 +133,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .jobInfo {
+    background: #fff;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
@@ -223,7 +225,6 @@
     color: #203647;
     background-color: #fff;
     border: 1px solid #bbb;
-    border-radius: 10px;
     transition: 0.6s ease-in-out;
 }
 
@@ -250,7 +251,8 @@
 
 @media screen and (max-width: 569px) {
     .container {
-        margin: 10px 0;
+        width: auto;
+        margin: 20px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -322,6 +324,9 @@
     .aboutCompany {
         padding: 15px;
         border-radius: 8px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .aboutJob h4,
@@ -334,7 +339,7 @@
         font-size: 12px;
         margin-top: 8px;
         letter-spacing: 0.2px;
-        line-height: 17px;
+        line-height: 1.4;
         white-space: pre-wrap;
     }
     
@@ -354,6 +359,9 @@
     .jobInfo {
         gap: 15px 0;
         padding: 20px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .gridColumn {
@@ -369,6 +377,11 @@
     
     .work {
         font-size: 14px;
+    }
+
+    .gridColumn img {
+        width: 14px;
+        height: 14px;
     }
     
     .info p,
@@ -386,6 +399,11 @@
     
     .skillTitle {
         gap: 8px;
+    }
+
+    .skillTitle img {
+        width: 14px;
+        height: 14px;
     }
     
     .skillsColumn h3 {

@@ -98,7 +98,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (min-width: 570px) and (max-width: 770px) {
 
     .mainFooter {
         padding: 30px 40px;
@@ -129,7 +129,8 @@
     }
 
     .title {
-        font-size: 14px;
+        font-size: 13.5px;
+        color: #e8e8e8;
     }
 
     .links .link {
@@ -151,10 +152,11 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 569px) {
 
     .mainFooter {
-        padding: 20px 30px;
+        padding: 20px 25px;
+        color: #fff;
     }
 
     .footer {

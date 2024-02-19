@@ -2,7 +2,7 @@ import User from "@/models/Users";
 import conn from "@/utils/db";
 import { NextResponse } from "next/server";
 
-export const POST = async (req) => {
+const POST = async (req) => {
     
     try {
         await conn();
@@ -13,3 +13,5 @@ export const POST = async (req) => {
         return new NextResponse('Database Error', {status: 500});
     }
 }
+
+export { POST };

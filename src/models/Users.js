@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
         phone: { type: String },
         designation: { type: String },
         location: { type: String },
+        skills: { type: String },
         about: { type: String },
         resume: [{
             asset_id: { type: String },

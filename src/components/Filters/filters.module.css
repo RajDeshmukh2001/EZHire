@@ -1,10 +1,16 @@
-.filters {
+.filter_container {
     width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filters {
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
+    gap: 5px;
 }
 
 .filter,
@@ -13,8 +19,9 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px 30px;
-    border: 1px solid #bbb;
     border-radius: 8px;
+    border: 1px solid #bbb;
+    background-color: #fefefe;
 }
 
 .filterBox {
@@ -82,24 +89,55 @@
     padding-bottom: 20px;
 }
 
+.clearButton {
+    align-self: flex-end;
+    margin: 15px;
+}
+
+.clearButton button {
+    cursor: pointer;
+    font-size: 15px;
+    background: transparent;
+}
+
 @media screen and (max-width: 569px) {
+    .filter_container {
+        width: 100%;
+        gap: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    }
+    
     .filters {
         width: 100%;
-        gap: 15px;
+        gap: 1.5px;
     }
-
+    
     .filter,
     .filterBox {
         gap: 14px;
         padding: 15px;
-        border-radius: 6px;
+        border: none;
+        border-radius: 0;
+    }
+
+    .filterBox:nth-of-type(2) {
+        padding-bottom: 5px;
+    }
+
+    .filterBox:nth-of-type(3) {
+        padding-bottom: 5px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
     .responsiveFilter {
-        padding: 8px 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 18px 15px;
         align-items: center;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .filterBox {
@@ -145,5 +183,9 @@
 
     .lastCheckBox {
         padding-bottom: 15px;
+    }
+
+    .clearButton {
+        display: none;
     }
 }

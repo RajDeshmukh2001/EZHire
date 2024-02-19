@@ -6,7 +6,7 @@ const config = {
     api: { bodyParser: false },
 };
 
-export const GET = async (req) => {
+const GET = async (req) => {
     try {
         await conn();
         const jobs = await Job.find({}).sort({ createdAt: -1 });
@@ -16,7 +16,7 @@ export const GET = async (req) => {
     }
 }
 
-export const POST = async (req) => {
+const POST = async (req) => {
     const { job_title, company_name, location, skills, job_type, job_category, salary, duration, probation_salary, stipend, internship_duration, perks, experience, work_mode, education, openings, start_date, apply_by, job_description, website_link, linkedin_link, other_links, company_description, employerId } = await req.json();
 
     try {
@@ -36,4 +36,4 @@ export const POST = async (req) => {
     }
 }
 
-export default config;
+export { GET, POST, config };

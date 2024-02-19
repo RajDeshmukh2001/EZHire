@@ -19,7 +19,6 @@
 
 .details h2 {
     font-weight: 700;
-    margin-bottom: 30px;
     color: #203647;
 }
 
@@ -44,12 +43,12 @@
 .formContainer {
     flex: 1;
     width: 100%;
-    padding: 50px 0;
+    padding: 40px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 35px;
     background: #fff;
 }
 
@@ -268,9 +267,12 @@
 
 @media screen and (max-width: 569px) {
     .container {
+        width: auto;
         flex-direction: column-reverse;
-        margin: 10px 0 20px 0;
+        margin: 20px;
         background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .details {
@@ -280,6 +282,7 @@
     .formContainer {
         padding: 20px 0;
         gap: 25px;
+        border-radius: 10px;
     }
     
     .title {

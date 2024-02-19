@@ -17,36 +17,35 @@
     padding: 20px 60px;
 }
 
-.heroSection:before, .heroSection:after
-{
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  -webkit-box-shadow: 0 15px 10px #777;
-  -moz-box-shadow: 0 15px 10px #777;
-  box-shadow: 0 15px 10px #777;
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  transform: rotate(-3deg);
+.heroSection:before,
+.heroSection:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
 }
 
-.heroSection:after
-{
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
+.heroSection:after {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
 }
 
 .left {
@@ -230,81 +229,81 @@
     .container {
         margin: 30px 0;
     }
-    
+
     .heroSection {
         padding: 25px 40px;
     }
-    
+
     .left {
         width: 100%;
         gap: 20px;
     }
-    
+
     .tagline {
         font-size: 25px;
         font-weight: 700;
         line-height: 35px;
     }
-    
+
     .text {
         width: 90%;
         font-size: 14px;
         line-height: 21px;
     }
-    
+
     .search {
         border-radius: 4px;
         padding: 6px 12px;
         font-size: 13px;
     }
-    
+
     .numbers {
         margin-top: 15px;
     }
-    
+
     .numbers h2 {
         font-size: 21px;
     }
-    
+
     .numbers p {
         font-size: 13px;
     }
-    
+
     .right::before {
         display: none;
     }
-    
+
     .img {
         display: none;
     }
-    
+
     .section {
         margin: 15px 0;
     }
-    
+
     .companies {
         gap: 20px;
     }
-    
+
     .title {
         font-size: 18px;
     }
-    
+
     .company {
         grid-template-columns: repeat(6, 1fr);
         gap: 22px;
     }
-    
+
     .imgBox {
         margin: 15px 0;
         height: 20px;
     }
-    
+
     .companyLogo {
         width: 80px !important;
         height: 30px !important;
     }
-    
+
     .latestListings {
         margin: 20px 0;
     }
@@ -312,12 +311,13 @@
 
 @media screen and (max-width: 569px) {
     .container {
-        margin: 10px 0;
+        margin: 20px 20px 10px;
+        border-radius: 10px;
     }
-    
+
     .heroSection {
         flex-direction: column-reverse;
-        padding: 30px 20px;
+        padding: 0 20px 30px;
     }
 
     .left {
@@ -332,13 +332,13 @@
         letter-spacing: 0.5px;
         line-height: 28px;
     }
-    
+
     .text {
         width: 100%;
         font-size: 14px;
         line-height: 20px;
     }
-    
+
     .searchBar {
         width: 60%;
         display: flex;
@@ -346,30 +346,30 @@
         justify-content: center;
         flex-direction: column;
     }
-    
+
     .search {
         border-radius: 4px;
         font-size: 12px;
         letter-spacing: 0.6px;
         font-weight: 400;
     }
-    
+
     .numbers {
         margin-top: 15px;
         align-items: center;
         justify-content: center;
         gap: 30px;
     }
-    
+
     .numbers h2 {
         font-size: 18px;
         text-align: center;
     }
-    
+
     .numbers p {
         font-size: 12px;
     }
-    
+
     .right::before {
         display: none;
     }
@@ -383,17 +383,22 @@
     }
 
     .section {
-        margin: 15px 0;
+        width: auto;
+        margin: 15px 20px;
     }
-    
+
     .companies {
         gap: 20px;
         padding: 20px 0;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .title {
+        padding: 0 15px;
         text-align: center;
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .company {
@@ -401,17 +406,17 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 18px;
     }
-    
+
     .imgBox {
         margin: 10px 0;
         height: 20px;
     }
-    
+
     .companyLogo {
         width: 60px !important;
         height: 30px !important;
     }
-    
+
     .latestListings {
         margin: 20px 0;
     }
@@ -419,7 +424,7 @@
     .spinnerBox {
         margin-bottom: 20px;
     }
-    
+
     .spinner {
         width: 30px;
         height: 30px;

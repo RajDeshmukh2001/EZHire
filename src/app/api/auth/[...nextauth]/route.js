@@ -40,7 +40,7 @@ const handler = NextAuth({
                         throw new Error('User not found');
                     }
                 } catch (error) {
-                    throw new Error('Wrong Credentials');
+                    throw new Error(error.message);
                 }
             },
         }),
@@ -66,7 +66,7 @@ const handler = NextAuth({
                         throw new Error('User not found');
                     }
                 } catch (error) {
-                    throw new Error(`Authentication failed ${error}`);
+                    throw new Error(error.message);
                 }
             },
         }),

@@ -55,7 +55,6 @@ const FilterReducer = (state, action) => {
 
             if (job_type.length > 0 || job_category.length > 0) {
                 tempFilterJobs = tempFilterJobs.filter((e) => {
-
                     return (
                         job_type.includes(e.job_type) ||
                         job_category.includes(e.job_category)

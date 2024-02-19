@@ -1,24 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import styles from "../login/login.module.css";
 import Image from "next/image";
-import { FcGoogle } from "react-icons/fc";
-import { BsGithub, BsCheck2 } from "react-icons/bs";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import styles from "../login/login.module.css";
+import { BsGithub, BsCheck2 } from "react-icons/bs";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter, redirect } from "next/navigation";
-import Error from "@/alerts/Error/Error";
-import Success from "@/alerts/Success/Success";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Register = () => {
   const session = useSession();
   const router = useRouter();
 
   const [show, setShow] = useState("password");
-  const [err, setErr] = useState("");
-  const [success, setSuccess] = useState("");
   const [inputs, setInputs] = useState({
     fullname: "",
     email: "",
@@ -40,7 +37,7 @@ const Register = () => {
     e.preventDefault();
 
     if (inputs.password.length < 8) {
-      setErr("Password must contain atleast 8 characters");
+      toast.error("Password must contain atleast 8 characters");
       return;
     }
 
@@ -57,10 +54,10 @@ const Register = () => {
 
       const alert = await res.text();
       if (res.status === 201) {
-        setSuccess(alert);
+        toast.success(alert);
         router.replace("/login");
       } else {
-        setErr(alert);
+        toast.error(alert);
       }
       e.target.reset();
     } catch (error) {
@@ -72,16 +69,8 @@ const Register = () => {
     show === "password" ? setShow("text") : setShow("password");
   };
 
-  const handleClose = () => {
-    setErr(false);
-    setSuccess(false);
-  };
-
   return (
     <>
-      {err && <Error errorMsg={err} onClose={handleClose} />}
-      {success && <Success successMsg={success} onClose={handleClose} />}
-
       <div className={`${styles.container} ${styles.signUpContainer}`}>
         <div className={styles.formContainer}>
           <h2 className={styles.title}>Sign Up</h2>

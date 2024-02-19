@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import Error from "@/alerts/Error/Error";
-import styles from "./login.module.css";
-import Success from "@/alerts/Success/Success";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import styles from "./login.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { BsGithub, BsCheck2 } from "react-icons/bs";
@@ -16,17 +15,15 @@ const Login = () => {
     const session = useSession();
 
     const [show, setShow] = useState("password");
-    const [success, setSuccess] = useState("");
-    const [err, setErr] = useState("");
     const [inputs, setInputs] = useState({
         email: "",
         password: "",
     });
 
     const router = useRouter();
-    // if (session.status === "authenticated") {
-    //     router.push("/profile");
-    // }
+    if (session.status === "authenticated") {
+        router.push("/profile/editProfile");
+    }
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -42,18 +39,16 @@ const Login = () => {
             const res = await signIn("credentials", {
                 email: inputs.email,
                 password: inputs.password,
-                callbackUrl: '/profile',
                 redirect: false,
+                callbackUrl: '/profile/editProfile',
             });
-            console.log(res);
 
             if (res.error) {
-                setErr(res.error)
+                toast.error(res.error)
             } else {
-                setSuccess("Login successfull");
-                router.push(res.url);
+                toast.success("Login successfull");
+                e.target.reset();
             }
-            e.target.reset();
         } catch (error) {
             console.log(error.message);
         }
@@ -63,16 +58,8 @@ const Login = () => {
         show === "password" ? setShow("text") : setShow("password");
     };
 
-    const handleClose = () => {
-        setErr(false);
-        setSuccess(false);
-    };
-
     return (
         <>
-            {success && <Success successMsg={success} onClose={handleClose} />}
-            {err && <Error errorMsg={err} onClose={handleClose} />}
-
             <div className={styles.container}>
                 <div className={styles.imgContainer}>
                     <Image

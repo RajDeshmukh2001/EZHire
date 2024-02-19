@@ -25,7 +25,7 @@ const Footer = () => {
           <div className={styles.links}>
             <h3 className={styles.title}>For Recruiters</h3>
             <h4 className={styles.link}>Pricing</h4>
-            <h4 className={styles.link}>Post Jobs</h4>
+            <Link href='/postJobs'><h4 className={styles.link}>Post Jobs</h4></Link>
             <h4 className={styles.link}>Hire Talents</h4>
           </div>
 

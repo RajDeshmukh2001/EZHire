@@ -2,7 +2,7 @@ import Job from "@/models/Job";
 import conn from "@/utils/db";
 import { NextResponse } from "next/server";
 
-export const GET = async (req, { params }) => {
+const GET = async (req, { params }) => {
     const { id } = params;
 
     try {
@@ -14,7 +14,7 @@ export const GET = async (req, { params }) => {
     }
 }
 
-export const DELETE = async (req, { params }) => {
+const DELETE = async (req, { params }) => {
     const { id } = params;
     
     try {
@@ -25,3 +25,5 @@ export const DELETE = async (req, { params }) => {
         return new NextResponse(error.message, { status: 500 });
     }
 }
+
+export { GET, DELETE };

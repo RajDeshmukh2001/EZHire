@@ -16,9 +16,6 @@
 
 .jobsContainer {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px 40px;
 }
 
 .latest {
@@ -26,11 +23,6 @@
     padding: 15px 20px;
     background-color: #fff;
     border-radius: 10px;
-    transition: 0.5s ease-in-out;
-}
-
-.latest:hover {
-    transform: translateY(-4px);
 }
 
 .listingBox {
@@ -213,8 +205,8 @@
 
 @media screen and (max-width: 569px) {
     .container {
-        width: 100%;
-        padding: 10px 0;
+        width: auto;
+        margin: 10px 20px;
         gap: 25px;
     }
 
@@ -228,8 +220,12 @@
     }
 
     .latest {
+        min-height: 230px;
+        height: 100%;
+        border: none;
         padding: 15px;
-        border-radius: 6px;
+        border-radius: 10px;
+        /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1); */
     }
 
     .listingBox {
@@ -265,7 +261,8 @@
     }
 
     .jobBody {
-        min-height: unset;
+        min-height: 126px;
+        height: 100%;
         gap: 15px;
         padding-top: 14px;
     }

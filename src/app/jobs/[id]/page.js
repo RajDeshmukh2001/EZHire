@@ -2,22 +2,23 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './job.module.css';
-import Loading from '@/app/loading';
+import DOMPurify from 'dompurify';
 import { format } from 'date-fns';
-import { useContext, useEffect } from 'react';
+import Loading from '@/app/loading';
+import styles from './job.module.css';
 import { FaSuitcase } from 'react-icons/fa';
-import { useJobContext } from '@/context/JobContext/JobContext';
+import { useSession } from 'next-auth/react';
+import { useContext, useEffect } from 'react';
 import { SlLocationPin } from 'react-icons/sl';
 import { GoShareAndroid } from 'react-icons/go';
 import { AiOutlineFieldNumber } from 'react-icons/ai';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
 import { GiMoneyStack, GiTakeMyMoney } from 'react-icons/gi';
+import RelatedJobs from '@/components/RelatedJobs/RelatedJobs';
+import { UserContext } from '@/context/UserContext/UserContext';
+import { useJobContext } from '@/context/JobContext/JobContext';
 import { BsPersonWorkspace, BsDot, BsBookmark } from 'react-icons/bs';
 import { PiSuitcaseSimple, PiGraduationCapLight, PiClock } from 'react-icons/pi';
-import RelatedJobs from '@/components/RelatedJobs/RelatedJobs';
-import { useSession } from 'next-auth/react';
-import { UserContext } from '@/context/UserContext/UserContext';
 
 const Job = ({ params }) => {
   const { getSingleJob, isSingleLoading, singleJob } = useJobContext();
@@ -57,7 +58,7 @@ const Job = ({ params }) => {
             <div className={styles.flexLeft}>
               <div className={styles.aboutJob}>
                 <h4>About Job</h4>
-                <p>{singleJob?.job_description}</p>
+                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(singleJob?.job_description || '')}}></p>
               </div>
 
               <div className={styles.aboutCompany}>
@@ -137,7 +138,7 @@ const Job = ({ params }) => {
                   <Image src='/categories.png' alt="categories" width={23} height={23} />
                   <div className={styles.info}>
                     <p>Category</p>
-                    <h3>{singleJob?.job_category}</h3>
+                    <h3>{singleJob?.job_category?.split("_").join(" ")}</h3>
                   </div>
                 </div>
 

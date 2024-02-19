@@ -3,18 +3,17 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 }
 
 .warning {
     display: flex;
-    align-items: center;
     gap: 5px;
     padding: 15px 20px;
     color: #ffb103;
     border-radius: 4px;
-    border: 1px solid rgba(241, 142, 6, 0.81);
-    background-color: rgba(220, 128, 1, 0.16);
+    border: 1px solid #ffb103;
+    background-color: rgba(255, 242, 0, 0.16);
 }
 
 .warningIcon {
@@ -52,6 +51,7 @@
 }
 
 .password input {
+    width: inherit;
     font-size: 15px;
 }
 
@@ -93,11 +93,12 @@
 
 @media screen and (max-width: 569px) {
     .deleteProfile {
-        margin: 20px 0;
+        margin: 10px 3px;
         padding: 15px 10px;
-        border: 1px solid #bbb;
-        border-radius: 8px;
         gap: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .warning {
@@ -127,7 +128,7 @@
     }
     
     .password {
-        padding: 6px 8px;
+        padding: 8px 10px;
     }
     
     .password input {
@@ -147,6 +148,7 @@
         margin-top: 15px;
         gap: 5px;
         padding: 6px 8px;
+        align-self: flex-end;
     }
     
     .deleteIcon {

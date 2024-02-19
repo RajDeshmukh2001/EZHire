@@ -1,11 +1,14 @@
 import './globals.css'
 import { Exo_2 } from 'next/font/google'
-import Navbar from '@/components/Navbar/Navbar';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '@/components/Footer/Footer';
-import AuthProvider from '@/components/AuthProvider/AuthProvider';
-import { UserProvider } from '@/context/UserContext/UserContext';
+import Navbar from '@/components/Navbar/Navbar';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { JobProvider } from '@/context/JobContext/JobContext';
+import { UserProvider } from '@/context/UserContext/UserContext';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import { FilterProvider } from '@/context/FilterContext/FilterContext';
+import { ToastContainer } from '@/alerts/nextToast';
 
 const exo = Exo_2({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], subsets: ['latin'], display: 'swap' });
 
@@ -27,6 +30,7 @@ export default function RootLayout({ children }) {
                   {children}
                   <Footer />
                 </div>
+                <ToastContainer position="top-center" autoClose={4000} limit={1} />
               </FilterProvider>
             </JobProvider>
           </UserProvider>

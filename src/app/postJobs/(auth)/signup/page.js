@@ -1,22 +1,19 @@
 "use client";
 
-import styles from "../styles/styles.module.css";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter, redirect } from "next/navigation";
-import Error from "@/alerts/Error/Error";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
-import Success from "@/alerts/Success/Success";
+import styles from "../styles/styles.module.css";
+import { useRouter } from "next/navigation";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const SignUp = () => {
   const session = useSession();
   const router = useRouter();
 
   const [show, setShow] = useState("password");
-  const [success, setSuccess] = useState("");
-  const [err, setErr] = useState("");
   const [inputs, setInputs] = useState({
     employerName: "",
     email: "",
@@ -25,7 +22,7 @@ const SignUp = () => {
   });
 
   if (session.status === "authenticated") {
-    redirect("/");
+    router.push("/employers");
   }
 
   const handleChange = (e) => {
@@ -39,12 +36,12 @@ const SignUp = () => {
     e.preventDefault();
 
     if (!/^\d{10}$/.test(inputs.phone)) {
-      setErr("Invalid Phone Number");
+      toast.error("Invalid Phone Number");
       return;
     }
 
     if (inputs.password.length < 8) {
-      setErr("Password must contain atleast 8 characters");
+      toast.error("Password must contain atleast 8 characters");
       return;
     }
 
@@ -62,12 +59,12 @@ const SignUp = () => {
 
       const alert = await res.text();
       if (res.status === 201) {
-        setSuccess(alert);
+        toast.success(alert);
         router.replace("/postJobs/signin");
+        e.target.reset();
       } else {
-        setErr(alert);
+        toast.error(alert);
       }
-      e.target.reset();
     } catch (error) {
       console.error(error);
     }
@@ -77,16 +74,8 @@ const SignUp = () => {
     show === "password" ? setShow("text") : setShow("password");
   };
 
-  const handleClose = () => {
-    setErr(false);
-    setSuccess(false);
-  };
-
   return (
     <>
-      {success && <Success successMsg={success} onClose={handleClose} />}
-      {err && <Error errorMsg={err} onClose={handleClose} />}
-      
       <div className={styles.container}>
         {/* Form Content */}
         <div className={styles.formContainer}>

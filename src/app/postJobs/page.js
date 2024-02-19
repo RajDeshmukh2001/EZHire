@@ -1,13 +1,15 @@
 "use client";
 
-import Error from "@/alerts/Error/Error";
+import { toast } from "react-toastify";
+import 'react-quill/dist/quill.snow.css';
 import styles from "./postJobs.module.css";
 import { useSession } from 'next-auth/react';
-import Success from "@/alerts/Success/Success";
 import { redirect, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { useJobContext } from "@/context/JobContext/JobContext";
 import { UserContext } from "@/context/UserContext/UserContext";
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const PostJobs = () => {
   const session = useSession();
@@ -15,9 +17,6 @@ const PostJobs = () => {
   const { getJobs } = useJobContext();
   const router = useRouter();
   const empId = session?.data?.user?.name ? session?.data?.user?.name : employerInfo?._id;
-
-  const [err, setErr] = useState("");
-  const [success, setSuccess] = useState("");
 
   const [inputs, setInputs] = useState({
     job_title: "",
@@ -38,12 +37,12 @@ const PostJobs = () => {
     openings: "",
     start_date: "",
     apply_by: "",
-    job_description: "",
     website_link: "",
     linkedin_link: "",
     other_links: "",
-    company_description: "",
   });
+  const [description, setDescription] = useState("");
+  const [aboutCompany, setAboutCompany] = useState("");
 
   const email = session?.data?.user?.email;
 
@@ -52,10 +51,10 @@ const PostJobs = () => {
       redirect('/postJobs/signin');
     }
 
-    if (session.status === 'authenticated' && employerInfo?.email !== email) {
-      setErr('Login as Employer');
-      redirect('/');
-    }
+    // if (session.status === 'authenticated' && employerInfo?.email !== email) {
+    //   toast.error('Login as an Employer');
+    //   redirect('/');
+    // }
   }, [session, employerInfo, email]);
 
   const handleChange = (e) => {
@@ -90,24 +89,24 @@ const PostJobs = () => {
           openings: inputs.openings,
           start_date: inputs.start_date,
           apply_by: inputs.apply_by,
-          job_description: inputs.job_description,
+          job_description: description,
           website_link: inputs.website_link,
           linkedin_link: inputs.linkedin_link,
           other_links: inputs.other_links,
-          company_description: inputs.company_description,
+          company_description: aboutCompany,
           employerId: empId,
         })
       });
       if (res.ok) {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setSuccess("Job posting successfull");
+        toast.success("Job posting successfull");
         e.target.reset();
         router.push('/profile/jobsPosted');
         getJobs();
       } else {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         const jobExist = await res.text();
-        setErr(jobExist);
+        toast.error(jobExist);
         e.target.reset();
       }
     } catch (error) {
@@ -115,16 +114,20 @@ const PostJobs = () => {
     }
   };
 
-  const handleClose = () => {
-    setErr(false);
-    setSuccess(false);
-  };
+  const toolbarOptions = [
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    ['link', 'formula'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+    [{ 'script': 'sub' }, { 'script': 'super' }],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'align': [] }],
+    ['clean']
+  ];
 
   return (
     <>
-      {err && <Error errorMsg={err} onClose={handleClose} />}
-      {success && <Success successMsg={success} onClose={handleClose} />}
-
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.jobInformation}>
@@ -201,16 +204,16 @@ const PostJobs = () => {
               >
                 <option value="" disabled hidden>Job Category</option>
                 <option value="Architecture">Architecture</option>
-                <option value="Sales & Marketing">Sales and Marketing</option>
-                <option value="Finance & Accounting">Finance and Accounting</option>
+                <option value="Sales_and_Marketing">Sales and Marketing</option>
+                <option value="Finance_and_Accounting">Finance and Accounting</option>
                 <option value="Technology">Technology</option>
-                <option value="Media, Arts & Design">Media, Arts and Design</option>
-                <option value="Business Management">Business Management</option>
+                <option value="Media_Arts_and_Design">Media, Arts and Design</option>
+                <option value="Business_Management">Business Management</option>
                 <option value="Education">Education</option>
                 <option value="Healthcare">Healthcare</option>
-                <option value="Supply Chain & Logistics">Supply Chain and Logistics</option>
+                <option value="Supply_Chain_and_Logistics">Supply Chain and Logistics</option>
                 <option value="Transportation">Transportation</option>
-                <option value="Construction & Extraction">Construction and Extraction</option>
+                <option value="Construction_and_Extraction">Construction and Extraction</option>
               </select>
             </div>
           </div>
@@ -317,6 +320,7 @@ const PostJobs = () => {
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className={styles.dates}>
                   <label htmlFor="apply">Apply by</label>
                   <input
@@ -328,15 +332,15 @@ const PostJobs = () => {
                 </div>
               </div>
 
-              <textarea
-                name="job_description"
-                cols="30"
-                rows="10"
-                placeholder="Job Description (Requirements/Responsibilities/Qualifications/...)"
+              <ReactQuill
+                theme="snow"
+                onChange={setDescription}
+                value={description}
+                modules={{ toolbar: toolbarOptions }}
                 className={styles.editor}
-                onChange={handleChange}
+                placeholder="Job Description (Requirements/Responsibilities/Qualifications/...)"
                 required
-              ></textarea>
+              />
             </div>
           </div>
 
@@ -370,15 +374,14 @@ const PostJobs = () => {
                 className={styles.links}
               />
 
-              <textarea
-                name="company_description"
-                cols="30"
-                rows="10"
-                placeholder="About Company"
+              <ReactQuill
+                theme="snow"
+                onChange={setAboutCompany}
+                value={aboutCompany}
+                modules={{ toolbar: toolbarOptions }}
                 className={styles.editor}
-                onChange={handleChange}
-                required
-              ></textarea>
+                placeholder="About Company"
+              />
             </div>
           </div>
 

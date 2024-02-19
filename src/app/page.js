@@ -1,10 +1,27 @@
+'use client';
+
+import Link from 'next/link';
 import Image from 'next/image';
+import { images } from './imagesData';
 import styles from './page.module.css';
 import Button from '@/components/Button/Button';
-import { images } from './imagesData';
 import LatestJobs from '@/components/LatestJobs/LatestJobs';
+import { useState } from 'react';
+import Categories from '@/components/Categories/Categories';
 
 export default function Home() {
+  const [company, setCompany] = useState('');
+  const [location, setLocation] = useState('');
+
+  let query;
+  if (company && location) {
+    query = 'company=' + company + '&location=' + location;
+  } else if (company) {
+    query = 'company=' + company;
+  } else {
+    query = 'location=' + location;
+  }
+
   return (
     <>
       {/* Hero Section */}
@@ -14,11 +31,11 @@ export default function Home() {
             <h1 className={styles.tagline}>Connecting Talent, Shaping Futures: Your Gateway to Success!</h1>
             <p className={styles.text}>The most talent relationship platform for talent sourcing that takes your recruiting into the digital age.</p>
 
-            <div className={styles.searchBar}>
-              <input type="search" placeholder="Search by Company" className={styles.search} />
-              <input type="search" placeholder="Search by Location" className={styles.search} />
-              <Button value="Search" />
-            </div>
+            <form className={styles.searchBar}>
+              <input type="text" onChange={(e) => setCompany(e.target.value)} placeholder="Search by Company" className={styles.search} />
+              <input type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Search by Location" className={styles.search} />
+              <Link href={`/searchedJobs?${query}`}><Button value="Search" /></Link>
+            </form>
 
             <div className={styles.numbers}>
               <div>
@@ -58,6 +75,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div>
+        <Categories />
+      </div>
 
       <div className={styles.latestListings}>
         <LatestJobs />

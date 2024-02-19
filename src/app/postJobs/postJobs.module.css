@@ -24,7 +24,7 @@
     font-weight: 600;
     padding: 15px 50px;
     color: #203647;
-    background-color: rgb(207, 227, 226);
+    background-color: rgb(145 220 255 / 20%);
 }
 
 .inputFields {
@@ -32,6 +32,8 @@
     padding: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    background: #fff;
+    border-radius: 8px;
     gap: 50px 80px;
 }
 
@@ -95,6 +97,7 @@
 }
 
 .editor {
+    height: 200px;
     grid-column: 1/4;
     margin-bottom: 30px;
 }
@@ -128,7 +131,7 @@
 
 @media screen and (max-width: 569px) {
     .container {
-        margin: 10px 0;
+        margin: 20px;
     }
     
     .form {
@@ -136,7 +139,9 @@
     }
     
     .jobInformation {
-        border-radius: 8px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
     
     .heading {
@@ -188,8 +193,10 @@
     }
     
     .editor {
+        border-radius: 10px;
         grid-column: unset;
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        height: auto;
     }
     
     .buttons {

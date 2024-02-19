@@ -4,7 +4,7 @@ import conn from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
-export const POST = async (req) => {
+const POST = async (req) => {
     const { fullname, employerName, email, phone, password } = await req.json();
 
     try {
@@ -30,3 +30,5 @@ export const POST = async (req) => {
         return new NextResponse(error.message, { status: 500 });
     }
 }
+
+export { POST };

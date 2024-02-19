@@ -1,7 +1,8 @@
 .jobs_container {
-    margin: 50px 0;
+    width: 100%;
+    margin: 20px 0 50px;
     display: flex;
-    gap: 40px;
+    gap: 10px;
 }
 
 .jobsContainer {
@@ -11,16 +12,18 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    margin-bottom: 40px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .header p {
+    margin-left: 20px;
     font-size: 15px;
-    color: #888;
+    color: #666;
 }
 
 .searchBox {
+    background: #fff;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -36,6 +39,10 @@
     letter-spacing: 0.5px;
 }
 
+.clearButton {
+    display: none;
+}
+
 .icon {
     color: #888;
 }
@@ -43,16 +50,17 @@
 .jobs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 20px 10px;
 }
 
 .job {
     width: 100%;
     padding: 20px;
+    background: #fff;
     border-radius: 10px;
+    border: 1px solid #bbb;
     text-transform: capitalize;
     transition: 0.5s ease-in-out;
-    border: 1px solid #bbb;
 }
 
 .job:hover {
@@ -60,13 +68,14 @@
 }
 
 .job legend {
-    text-align: right;
-    border-radius: 10px;
-    color: #007cc7;
-    background-color: #f7f6f6;
-    margin-right: 2rem;
-    padding: 2px 15px;
     font-size: 14px;
+    color: #007cc7;
+    text-align: right;
+    padding: 2px 15px;
+    margin-right: 2rem;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    background-color: #fff;
 }
 
 .jobHeader {
@@ -275,7 +284,7 @@
     color: initial;
 }
 
-.btn {
+.view {
     padding: 6px 14px;
     font-size: 14px;
     font-weight: 400;
@@ -288,7 +297,7 @@
     transition: 0.6s ease-in-out;
 }
 
-.btn:hover {
+.view:hover {
     background-color: #203647;
     color: #fff;
     border-radius: 20px;
@@ -297,7 +306,8 @@
 
 @media screen and (max-width: 569px) {
     .jobs_container {
-        margin: 10px 0;
+        width: auto;
+        margin: 20px 20px 30px; 
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -309,7 +319,7 @@
     }
 
     .header {
-        margin: 20px 0;
+        margin-bottom: 20px;
         align-items: flex-start;
         flex-direction: column-reverse;
         gap: 15px;
@@ -317,7 +327,7 @@
 
     .header p {
         font-size: 12px;
-        color: #888;
+        margin-left: 2px;
     }
 
     .search {
@@ -326,8 +336,24 @@
 
     .searchBox input {
         width: 100%;
-        padding: 6px 10px;
+        padding: 8px 10px;
         font-size: 12px;
+    }
+
+    .clearButton {
+        width: 100%;
+        display: flex;
+        margin-top: 14px;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+    
+    .clearButton button {
+        cursor: pointer;
+        font-size: 12px;
+        padding-right: 5px;
+        letter-spacing: 0.3px;
+        background: transparent;
     }
 
     .jobs {
@@ -341,7 +367,9 @@
     .job {
         width: 100%;
         padding: 15px;
-        border-radius: 6px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
     }
 
     .job legend {
@@ -468,7 +496,7 @@
         font-size: 14px;
     }
 
-    .btn {
+    .view {
         padding: 3px 8px;
         font-size: 12px;
         text-transform: capitalize;

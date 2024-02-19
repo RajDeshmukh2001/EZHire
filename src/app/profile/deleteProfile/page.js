@@ -1,103 +1,93 @@
 "use client";
 
-import styles from './delete.module.css';
-import MyProfile from '@/components/MyProfile/MyProfile';
 import { useState } from 'react';
-import { AiFillWarning, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+import styles from './delete.module.css';
 import { MdDeleteForever } from 'react-icons/md';
 import { signOut, useSession } from 'next-auth/react';
-import Error from '@/alerts/Error/Error';
-import Success from '@/alerts/Success/Success';
+import ProfileMenu from '@/components/ProfileMenu/ProfileMenu';
+import { AiFillWarning, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const DeleteProfile = () => {
-    const [err, setErr] = useState("");
-    const [success, setSuccess] = useState("");
-    const [show, setShow] = useState("password");
-    const [password, setPassword] = useState("");
+  const [show, setShow] = useState("password");
+  const [password, setPassword] = useState("");
 
-    const session = useSession();
+  const session = useSession();
 
-    const email = session?.data?.user?.email;
+  const email = session?.data?.user?.email;
 
-    const handleDelete = async (e) => {
-        e.preventDefault();
+  const handleDelete = async (e) => {
+    e.preventDefault();
 
-        try {
-            const res = await fetch('/api/auth/deleteUser', {
-                method: "DELETE",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email,
-                    password
-                })
-            });
+    try {
+      const res = await fetch('/api/auth/deleteUser', {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
 
-            const alert = await res.text();
-            if (res.status === 201) {
-                setSuccess(alert);
-                signOut({ callbackUrl: '/register', redirect: false });
-            } else {
-                setErr(alert)
-            }
-            e.target.reset();
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handlePassword = () => {
-        show === "password" ? setShow("text") : setShow("password");
-    };
-
-    const handleClose = () => {
-        setErr(false);
-        setSuccess(false);
+      const alert = await res.text();
+      if (res.status === 201) {
+        toast.success(alert);
+        signOut({ callbackUrl: '/register', redirect: false });
+      } else {
+        toast.error("Incorrect Password");
+      }
+      e.target.reset();
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return (
-        <>
-            {err && <Error errorMsg={err} onClose={handleClose} />}
-            {success && <Success successMsg={success} onClose={handleClose} />}
-            <MyProfile>
-                <div className={styles.deleteProfile}>
-                    <div className={styles.warning}>
-                        <AiFillWarning className={styles.warningIcon} />
-                        <p><span>Warning!</span> Deleting your account is permanent and cannot be undone. All your data will be removed permanently.</p>
-                    </div>
+  const handlePassword = () => {
+    show === "password" ? setShow("text") : setShow("password");
+  };
 
-                    <form className={styles.form} onSubmit={handleDelete}>
-                        <p>To confirm your account deletion, please enter your <span>password</span>.</p>
+  return (
+    <>
+      <ProfileMenu>
+        <div className={styles.deleteProfile}>
+          <div className={styles.warning}>
+            <AiFillWarning className={styles.warningIcon} />
+            <p><span>Warning!</span> Deleting your account is permanent and cannot be undone. All your data will be removed permanently.</p>
+          </div>
 
-                        <div className={styles.password}>
-                            <input
-                                type={show}
-                                name="password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                autoComplete="off"
-                                required
-                            />
-                            {show === "password" ? (
-                                <AiOutlineEyeInvisible
-                                    className={styles.blindEye}
-                                    onClick={handlePassword}
-                                />
-                            ) : (
-                                <AiOutlineEye
-                                    className={styles.eye}
-                                    onClick={handlePassword}
-                                />
-                            )}
-                        </div>
+          <form className={styles.form} onSubmit={handleDelete}>
+            <p>To confirm your account deletion, please enter your <span>password</span>.</p>
 
-                        <button className={styles.deleteBtn}>
-                            <MdDeleteForever className={styles.deleteIcon} />
-                            Delete
-                        </button>
-                    </form>
-                </div>
-            </MyProfile>
-        </>
-    )
+            <div className={styles.password}>
+              <input
+                type={show}
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="off"
+                required
+              />
+              {show === "password" ? (
+                <AiOutlineEyeInvisible
+                  className={styles.blindEye}
+                  onClick={handlePassword}
+                />
+              ) : (
+                <AiOutlineEye
+                  className={styles.eye}
+                  onClick={handlePassword}
+                />
+              )}
+            </div>
+
+            <button className={styles.deleteBtn}>
+              <MdDeleteForever className={styles.deleteIcon} />
+              Delete
+            </button>
+          </form>
+        </div>
+      </ProfileMenu>
+    </>
+  )
 }
 
 export default DeleteProfile;
