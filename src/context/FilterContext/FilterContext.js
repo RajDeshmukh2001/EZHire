@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from '../../reducer/FilterReducer';
 import { useJobContext } from '../JobContext/JobContext';
+import { UserContext } from '../UserContext/UserContext';
 
 export const FilterContext = createContext();
 
@@ -19,6 +20,7 @@ const initialState = {
 
 export const FilterProvider = ({ children }) => {
     const { jobs } = useJobContext();
+    const { userInfo } = useContext(UserContext);
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -40,8 +42,8 @@ export const FilterProvider = ({ children }) => {
 
     // Load Filtered Jobs
     useEffect(() => {
-        dispatch({ type: 'LOAD_FILTER_JOBS', payload: jobs });
-    }, [jobs]);
+        dispatch({ type: 'LOAD_FILTER_JOBS', payload: { jobs, userInfo } });
+    }, [jobs, userInfo]);
 
     return (
         <FilterContext.Provider value={{ ...state, updateFilterValue, clearFilters }}>

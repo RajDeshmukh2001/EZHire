@@ -9,11 +9,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { SlLocationPin } from 'react-icons/sl';
 import { PiClockClockwise, PiMoney } from 'react-icons/pi';
 import { useJobContext } from '@/context/JobContext/JobContext';
+import { useFilterContext } from '@/context/FilterContext/FilterContext';
 
 const RelatedJobs = ({ category, jobId }) => {
     const { jobs } = useJobContext();
+    let { filter_jobs } = useFilterContext();
 
-    const relatedJobsData = jobs.filter((e) => {
+    const relatedJobsData = filter_jobs.filter((e) => {
         if (e.job_category && e.job_category === category && e._id !== jobId) {
             return e;
         }

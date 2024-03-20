@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import styles from "../styles/styles.module.css";
 import { useRouter } from "next/navigation";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
@@ -59,8 +59,13 @@ const SignUp = () => {
 
       const alert = await res.text();
       if (res.status === 201) {
+        await signIn("employer-credentials", {
+          email: inputs.email,
+          password: inputs.password,
+          redirect: false,
+        });
         toast.success(alert);
-        router.replace("/postJobs/signin");
+        router.push("/profile/editProfile");
         e.target.reset();
       } else {
         toast.error(alert);

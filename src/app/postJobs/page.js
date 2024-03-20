@@ -1,14 +1,14 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import { toast } from "react-toastify";
 import 'react-quill/dist/quill.snow.css';
 import styles from "./postJobs.module.css";
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { redirect, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { useJobContext } from "@/context/JobContext/JobContext";
 import { UserContext } from "@/context/UserContext/UserContext";
-import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const PostJobs = () => {
@@ -17,11 +17,12 @@ const PostJobs = () => {
   const { getJobs } = useJobContext();
   const router = useRouter();
   const empId = session?.data?.user?.name ? session?.data?.user?.name : employerInfo?._id;
+  const company_logo = employerInfo?.image_url;
 
   const [inputs, setInputs] = useState({
     job_title: "",
-    company_name: "",
-    location: "",
+    company_name: employerInfo?.employerName,
+    location: employerInfo?.location,
     skills: "",
     job_type: "",
     job_category: "",
@@ -37,24 +38,23 @@ const PostJobs = () => {
     openings: "",
     start_date: "",
     apply_by: "",
-    website_link: "",
+    website_link: employerInfo?.link,
     linkedin_link: "",
     other_links: "",
   });
   const [description, setDescription] = useState("");
-  const [aboutCompany, setAboutCompany] = useState("");
+  const [aboutCompany, setAboutCompany] = useState(employerInfo?.about || "");
 
   const email = session?.data?.user?.email;
-
   useEffect(() => {
     if (session.status === 'unauthenticated') {
-      redirect('/postJobs/signin');
+      router.push('/postJobs/signin');
     }
 
-    // if (session.status === 'authenticated' && employerInfo?.email !== email) {
-    //   toast.error('Login as an Employer');
-    //   redirect('/');
-    // }
+    if (session.status === 'authenticated' && employerInfo?.email !== email) {
+      toast.error('Login as an Employer');
+      router.push('/');
+    }
   }, [session, employerInfo, email]);
 
   const handleChange = (e) => {
@@ -91,15 +91,17 @@ const PostJobs = () => {
           apply_by: inputs.apply_by,
           job_description: description,
           website_link: inputs.website_link,
+          company_logo,
           linkedin_link: inputs.linkedin_link,
           other_links: inputs.other_links,
           company_description: aboutCompany,
           employerId: empId,
         })
       });
+
       if (res.ok) {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        toast.success("Job posting successfull");
+        toast.success("Job posted successfully");
         e.target.reset();
         router.push('/profile/jobsPosted');
         getJobs();
@@ -107,7 +109,6 @@ const PostJobs = () => {
         e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         const jobExist = await res.text();
         toast.error(jobExist);
-        e.target.reset();
       }
     } catch (error) {
       console.error(error);
@@ -115,7 +116,6 @@ const PostJobs = () => {
   };
 
   const toolbarOptions = [
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
     ['bold', 'italic', 'underline', 'strike'],
     ['blockquote', 'code-block'],
     ['link', 'formula'],
@@ -148,6 +148,7 @@ const PostJobs = () => {
                 placeholder="Company Name"
                 autoComplete="off"
                 required
+                value={inputs.company_name}
                 onChange={handleChange}
               />
               <input
@@ -156,6 +157,7 @@ const PostJobs = () => {
                 placeholder="Location (City, State)"
                 autoComplete="off"
                 required
+                value={inputs.location}
                 onChange={handleChange}
               />
               <input
@@ -188,7 +190,7 @@ const PostJobs = () => {
                 required
                 onChange={handleChange}
               >
-                <option value="" disabled hidden>Job Type</option>
+                <option value="" disabled hidden style={{ color: "#777" }}>Job Type</option>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
                 <option value="Fresher">Fresher</option>
@@ -354,17 +356,11 @@ const PostJobs = () => {
                 placeholder="Website Link"
                 autoComplete="off"
                 required
+                value={inputs.website_link}
                 onChange={handleChange}
                 className={styles.links}
               />
-              <input
-                type="text"
-                name="linkedin_link"
-                placeholder="LinkedIn Link"
-                autoComplete="off"
-                onChange={handleChange}
-                className={styles.links}
-              />
+
               <input
                 type="text"
                 name="other_links"

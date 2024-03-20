@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "../Button/Button";
 import styles from "./filters.module.css";
-import { SlMinus, SlPlus } from "react-icons/sl";
 import { IoMdArrowDropdown, IoMdArrowDropup  } from "react-icons/io";
 import { useFilterContext } from "@/context/FilterContext/FilterContext";
 

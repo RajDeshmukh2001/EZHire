@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
+import { TiEye } from "react-icons/ti";
 import { useContext, useState } from 'react';
 import styles from './jobsPosted.module.css';
 import Button from '@/components/Button/Button';
-import { PiDotsThreeVerticalBold } from 'react-icons/pi';
+import { MdDeleteForever } from "react-icons/md";
+import { motion, AnimatePresence } from "framer-motion";
 import ProfileMenu from "@/components/ProfileMenu/ProfileMenu";
 import { UserContext } from '@/context/UserContext/UserContext';
 import { useJobContext } from '@/context/JobContext/JobContext';
@@ -15,17 +17,14 @@ import { useJobContext } from '@/context/JobContext/JobContext';
 const JobsPosted = () => {
     const { employerInfo } = useContext(UserContext);
     const { jobs, getJobs } = useJobContext();
-    const [show, setShow] = useState(false);
 
     const jobsPosted = jobs.filter((e) => employerInfo?._id === e.employerId);
 
-    const handleDisplay = (index) => {
-        setShow((prevIndex) => (prevIndex === index ? false : index));
-    };
-
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`/api/postJob/${id}`, { method: 'DELETE' });
+            const res = await fetch(`/api/postJob/${id}`, { 
+                method: 'DELETE', 
+            });
             const deleteMessage = await res.text();
             if (res) {
                 toast.success(deleteMessage);
@@ -33,6 +32,25 @@ const JobsPosted = () => {
             getJobs();
         } catch (error) {
             console.error(error);
+        }
+    };
+
+    const tableBody = {
+        hidden: { opacity: 1 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: 0.1,
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const item = {
+        hidden: { y: 10, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1
         }
     };
 
@@ -47,38 +65,44 @@ const JobsPosted = () => {
                     </div>
                 }
 
-                {jobsPosted.map((job, index) => (
-                    <div className={styles.jobs} key={job._id}>
-                        <div className={styles.job}>
-                            <div className={styles.title}>
-                                <h1>{job.job_title}</h1>
-                                <p>{job.job_type}</p>
-                            </div>
-
-                            <div className={styles.postedOn}>
-                                <p>Date Posted</p>
-                                <h3>{format(new Date(job.createdAt), 'dd MMM yyyy')}</h3>
-                            </div>
-
-                            <div className={styles.applicants}>
-                                <p>Applications</p>
-                                <h3>20</h3>
-                            </div>
-                        </div>
-
-                        <div className={styles.options}>
-                            <div className={styles.dotIcon} onClick={() => handleDisplay(index)}>
-                                <PiDotsThreeVerticalBold />
-                            </div>
-
-                            <div className={show === index ? styles.showOptions : styles.hideOptions} onClick={handleDisplay}>
-                                <Link href={`/jobs/${job._id}`} className={styles.view}>View</Link>
-                                <button>Edit</button>
-                                <button className={styles.delete} onClick={() => handleDelete(job._id)}>Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                {jobsPosted?.length > 0 &&
+                    <AnimatePresence mode='wait'>
+                        <table className={styles.table_container}>
+                            <thead>
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Job Type</th>
+                                    <th>Posted on</th>
+                                    <th>End Date</th>
+                                    <th>Applications</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <motion.tbody
+                                variants={tableBody}
+                                initial="hidden"
+                                animate="visible"
+                            >
+                                {jobsPosted.map((job, index) => (
+                                    <motion.tr
+                                        key={job._id}
+                                        variants={item}
+                                    >
+                                        <td className={styles.title}>{job.job_title}</td>
+                                        <td>{job.job_type}</td>
+                                        <td>{format(new Date(job.createdAt), 'dd MMM yyyy')}</td>
+                                        <td>{format(new Date(job.apply_by), 'dd MMM yyyy')}</td>
+                                        <td>{job.job_applications?.length}</td>
+                                        <td>
+                                            <Link href={`/jobs/${job._id}`} className={styles.view}><TiEye /></Link>
+                                            <button className={styles.delete} onClick={() => handleDelete(job._id)}><MdDeleteForever /></button>
+                                        </td>
+                                    </motion.tr>
+                                ))}
+                            </motion.tbody>
+                        </table>
+                    </AnimatePresence>
+                }
             </div>
         </ProfileMenu>
     )

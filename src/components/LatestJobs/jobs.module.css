@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 130px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -19,10 +19,10 @@
 }
 
 .latest {
-    border: 1px solid #bbb;
     padding: 15px 20px;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 4px 4px 18px -3px rgba(0,0,0,0.1);
 }
 
 .listingBox {
@@ -37,11 +37,24 @@
 .header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+}
+
+.imgBox {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid #cdcdcd;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.logo {
+    object-fit: cover;
 }
 
 .description h2 {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     text-transform: capitalize;
 }
@@ -59,12 +72,6 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-}
-
-.new {
-    font-size: 11px;
-    font-weight: 500;
-    color: red;
 }
 
 .jobType h2 {
@@ -94,7 +101,7 @@
 .locationAndSalary {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .icon {
@@ -103,6 +110,7 @@
 
 .locationAndSalary p {
     font-size: 13px;
+    text-transform: capitalize;
 }
 
 .jobSkills {
@@ -125,14 +133,14 @@
     background-color: rgba(4, 158, 230, 0.1);
 }
 
-.viewJob {
+.job_footer {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.viewJob p {
+.job_footer p {
     color: #707f8c;
     font-size: 11.5px;
     display: flex;
@@ -140,7 +148,24 @@
     gap: 3px;
 }
 
-.viewJob a {
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.buttons .saved,
+.buttons .save {
+    font-size: 18px;
+    color: #5a6773;
+    transition: 0.5s ease-in-out;
+}
+
+.buttons .saved {
+    color: #049ee6;
+}
+
+.buttons a {
     padding: 4px 15px;
     font-size: 12px;
     font-weight: 400;
@@ -153,7 +178,7 @@
     transition: 0.6s ease-in-out;
 }
 
-.viewJob a:hover {
+.buttons a:hover {
     background-color: #203647;
     color: #fff;
     border-radius: 20px;
@@ -206,8 +231,9 @@
 @media screen and (max-width: 569px) {
     .container {
         width: auto;
-        margin: 10px 20px;
         gap: 25px;
+        margin: 10px 20px;
+        padding: 20px 0;
     }
 
     .container h2 {
@@ -220,12 +246,11 @@
     }
 
     .latest {
-        min-height: 230px;
+        min-height: 210px;
         height: 100%;
         border: none;
         padding: 15px;
         border-radius: 10px;
-        /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1); */
     }
 
     .listingBox {
@@ -234,12 +259,22 @@
     }
 
     .header {
-        gap: 10px;
+        gap: 4px;
+    }
+
+    .imgBox {
+        padding: 5px;
+    }
+
+    .logo,
+    .suitcaseBag {
+        width: 25px !important;
+        height: 25px !important;
     }
 
     .description h2 {
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 550;
     }
 
     .description p {
@@ -248,10 +283,6 @@
 
     .jobType {
         gap: 10px;
-    }
-
-    .new {
-        font-size: 10px;
     }
 
     .jobType h2 {
@@ -292,11 +323,20 @@
         border-radius: 2px;
     }
 
-    .viewJob p {
+    .job_footer p {
         font-size: 11px;
     }
 
-    .viewJob a {
+    .buttons {
+        gap: 10px;
+    }
+    
+    .buttons .saved,
+    .buttons .save {
+        font-size: 14px;
+    }
+
+    .buttons a {
         padding: 4px 8px;
         font-size: 11.5px;
     }

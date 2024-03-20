@@ -1,11 +1,11 @@
 'use client';
 
-import Button from '@/components/Button/Button';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './employers.module.css';
-import { BiSolidChevronRightCircle } from 'react-icons/bi';
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import Button from '@/components/Button/Button';
+import { BiSolidChevronRightCircle } from 'react-icons/bi';
 
 const Employers = () => {
   const session = useSession();

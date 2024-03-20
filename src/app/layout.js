@@ -1,16 +1,16 @@
-import './globals.css'
-import { Exo_2 } from 'next/font/google'
+import './globals.css';
+import { Exo, Exo_2 } from 'next/font/google';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '@/components/Footer/Footer';
 import Navbar from '@/components/Navbar/Navbar';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from '@/alerts/nextToast';
 import { JobProvider } from '@/context/JobContext/JobContext';
 import { UserProvider } from '@/context/UserContext/UserContext';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import { FilterProvider } from '@/context/FilterContext/FilterContext';
-import { ToastContainer } from '@/alerts/nextToast';
 
-const exo = Exo_2({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], subsets: ['latin'], display: 'swap' });
+const exo2 = Exo_2({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' });
 
 export const metadata = {
   title: 'EZHire',
@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={exo.className}>
+      <body className={exo2.className}>
         <AuthProvider>
           <UserProvider>
             <JobProvider>

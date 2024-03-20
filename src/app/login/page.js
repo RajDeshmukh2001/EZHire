@@ -44,7 +44,7 @@ const Login = () => {
             });
 
             if (res.error) {
-                toast.error(res.error)
+                toast.error("Something went wrong. Try again.")
             } else {
                 toast.success("Login successfull");
                 e.target.reset();
@@ -156,7 +156,7 @@ const Login = () => {
                     </form>
 
                     <p className={styles.text}>
-                        Don&apos;t have an account? <Link href="/register">SIGN UP</Link>
+                        Don&apos;t have an account? <Link href="/register">REGISTER</Link>
                     </p>
                 </div>
             </div>

@@ -2,9 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 60px 20px 60px;
+    padding: 40px 140px 20px;
     background-color: #203647;
-    color: #888;
+    color: #fff;
 }
 
 .footer {
@@ -48,8 +48,7 @@
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    color: #888;
-    text-decoration: underline;
+    text-decoration: underline 1px;
 }
 
 .links .link {
@@ -88,13 +87,11 @@
 }
 
 .icons {
-    filter: grayscale(100%);
     transition: 0.4s;
 }
 
 .icons:hover {
     transform: scale(1.2);
-    filter: grayscale(0);
     cursor: pointer;
 }
 
@@ -171,6 +168,7 @@
     }
 
     .grid1 {
+        max-width: fit-content;
         grid-column: 1/3;
     }
 
@@ -180,18 +178,24 @@
         letter-spacing: 0.6px;
         line-height: 20px;
     }
-
-    .title {
-        font-size: 14px;
-        text-decoration: none;
-    }
-
+    
     .links {
         gap: 10px;
     }
 
+    .links:nth-of-type(3),
+    .links:nth-of-type(5) {
+        padding-left: 20px;
+    }
+
     .links .link {
         font-size: 12px;
+    }
+    
+    .title {
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
     }
 
     .social {

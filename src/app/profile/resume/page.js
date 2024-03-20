@@ -16,8 +16,7 @@ const Resume = () => {
 
     const email = userInfo?.email
 
-    const sortedResumes = userInfo?.resume.filter(res => res.resume_url).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    console.log(sortedResumes);
+    const sortedResumes = userInfo?.resume.filter(res => res.resume_url).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 3);
 
     const handleDisplay = (index) => {
         setShow((prevIndex) => (prevIndex === index ? false : index));

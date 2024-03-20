@@ -4,10 +4,10 @@ import styles from './edit.module.css';
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
+import { useSession } from 'next-auth/react';
 import { MdCloudUpload } from 'react-icons/md';
 import ProfileMenu from '@/components/ProfileMenu/ProfileMenu';
 import { UserContext } from "@/context/UserContext/UserContext";
-import { useSession } from 'next-auth/react';
 
 const EditProfile = () => {
     const { userInfo, employerInfo, fetchData, fetchEmployer } = useContext(UserContext);
@@ -71,7 +71,7 @@ const EditProfile = () => {
                 setResumeFile("");
                 fetchData();
                 fetchEmployer();
-                router.push("/profile");
+                router.push("/postJobs");
             } else {
                 toast.error(alert);
                 e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });

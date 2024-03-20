@@ -1,7 +1,7 @@
 "use client"
 
-import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from '../../reducer/JobReducer';
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 
 export const JobContext = createContext();
 
@@ -15,7 +15,7 @@ const initialState = {
 }
 
 export const JobProvider = ({ children }) => {
-
+    const [bookmarks, setBookmarks] = useState([]);
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const getJobs = async () => {
@@ -40,12 +40,34 @@ export const JobProvider = ({ children }) => {
         }
     }
 
+    const handleBookmark = (jobId) => {
+        const isBookmarked = bookmarks.includes(jobId);
+        if (isBookmarked) {
+            setBookmarks(currentBookmarks => currentBookmarks.filter(id => id !== jobId));
+        } else {
+            setBookmarks(currentBookmarks => [...currentBookmarks, jobId]);
+        }
+    };
+
     useEffect(() => {
         getJobs();
     }, []);
 
+    useEffect(() => {
+        // Fetch bookmarks from localStorage on client side
+        const savedBookmarks = localStorage.getItem('bookmarks');
+        if (savedBookmarks) {
+            setBookmarks(JSON.parse(savedBookmarks));
+        }
+    }, []);
+
+    useEffect(() => {
+        // Update localStorage whenever bookmarks change
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }, [bookmarks]);
+
     return (
-        <JobContext.Provider value={{ ...state, getSingleJob, getJobs }}>
+        <JobContext.Provider value={{ ...state, getSingleJob, getJobs, handleBookmark, bookmarks }}>
             {children}
         </JobContext.Provider>
     )

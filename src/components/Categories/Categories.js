@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import styles from './categories.module.css';
 import { useFilterContext } from '@/context/FilterContext/FilterContext';
 
@@ -26,13 +27,18 @@ const Categories = () => {
 
     return (
         <div className={styles.category_container}>
-            <h2>Categories</h2>
+            <h2>Browse by Category</h2>
             <div className={styles.categories}>
                 {[...categories].map((cat) => (
-                    <div key={cat} className={styles.category}>
+                    <motion.div 
+                        key={cat} 
+                        className={styles.category}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
                         <Image src={category[cat] ? category[cat] : ""} alt={cat} width={30} height={30} />
                         <Link href={`/searchedJobs?category=${cat}`}><p>{cat.split('_').join(" ")}</p></Link>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

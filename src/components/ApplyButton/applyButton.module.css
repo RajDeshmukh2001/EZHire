@@ -1,0 +1,136 @@
+.buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.apply_button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.applied_btn,
+.apply_btn,
+.login_btn {
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    color: #203647;
+    padding: 8px 14px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    text-transform: uppercase;
+    transition: 0.6s ease-in-out;
+}
+
+.apply_btn:hover,
+.login_btn:hover {
+    color: #fff;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #203647;
+}
+
+.applied_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #049ee6;
+    border: 1px solid #049ee6;
+    background-color: rgba(4, 158, 230,0.1);
+}
+
+.applied_btn svg {
+    font-size: 18px;
+}
+
+.applied_btn:hover {
+    cursor: auto;
+    border-radius: 0;
+}
+
+.btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #203647;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    transition: 0.6s ease-in-out;
+}
+
+.btn .saved_btn {
+    color: #049ee6;
+    border: 1px solid #049ee6;
+    background-color: rgba(4, 158, 230,0.1);
+}
+
+.btn .saved_btn svg {
+    color: #049ee6;
+}
+
+.btn button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 569px) {
+    .buttons {
+        margin: 6px 0;
+        gap: 15px;
+    }
+
+    .applied_btn,
+    .login_btn,
+    .apply_btn {
+        border: none;
+        font-size: 12px;
+        padding: 8px 14px;
+        border-radius: 5px;
+        letter-spacing: 0.4px;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    }
+
+    .login_btn:hover, 
+    .apply_btn:hover {
+        color: #fff;
+        border-radius: 5px;
+        background-color: #203647;
+    }
+
+    .btn button {
+        padding: 8px 14px;
+        font-size: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    }
+
+    .btn button:hover {
+        border-radius: 5px;
+        color: #203647;
+        background-color: #fff;
+    }
+}

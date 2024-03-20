@@ -17,7 +17,7 @@ const GET = async (req) => {
 }
 
 const POST = async (req) => {
-    const { job_title, company_name, location, skills, job_type, job_category, salary, duration, probation_salary, stipend, internship_duration, perks, experience, work_mode, education, openings, start_date, apply_by, job_description, website_link, linkedin_link, other_links, company_description, employerId } = await req.json();
+    const { job_title, company_name, location, skills, job_type, job_category, salary, duration, probation_salary, stipend, internship_duration, perks, experience, work_mode, education, openings, start_date, apply_by, job_description, company_logo, website_link, other_links, company_description, employerId } = await req.json();
 
     try {
         await conn();
@@ -26,7 +26,7 @@ const POST = async (req) => {
         if (jobExist) {
             return new NextResponse('Job already exists', { status: 409 });
         } else {
-            const newjob = new Job({ job_title, company_name, location, skills, job_type, job_category, salary, duration, probation_salary, stipend, internship_duration, perks, experience, work_mode, education, openings, start_date, apply_by, job_description, website_link, linkedin_link, other_links, company_description, employerId });
+            const newjob = new Job({ job_title, company_name, location, skills, job_type, job_category, salary, duration, probation_salary, stipend, internship_duration, perks, experience, work_mode, education, openings, start_date, apply_by, job_description, company_logo, website_link, other_links, company_description, employerId });
 
             await newjob.save();
             return new NextResponse('Job Posted', { status: 201 });

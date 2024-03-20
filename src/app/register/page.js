@@ -54,8 +54,13 @@ const Register = () => {
 
       const alert = await res.text();
       if (res.status === 201) {
+        await signIn("credentials", {
+          email: inputs.email,
+          password: inputs.password,
+          redirect: false,
+        });
         toast.success(alert);
-        router.replace("/login");
+        router.push("/profile/editProfile");
       } else {
         toast.error(alert);
       }
@@ -73,7 +78,7 @@ const Register = () => {
     <>
       <div className={`${styles.container} ${styles.signUpContainer}`}>
         <div className={styles.formContainer}>
-          <h2 className={styles.title}>Sign Up</h2>
+          <h2 className={styles.title}>Register</h2>
 
           <div className={styles.buttons}>
             <button
@@ -81,15 +86,15 @@ const Register = () => {
               onClick={() => signIn("google", { callbackUrl: "/" })}
             >
               <FcGoogle className={styles.icon} />
-              Sign up with Google
+              Google
             </button>
-            
+
             <button
               className={styles.btn}
               onClick={() => signIn("github", { callbackUrl: "/" })}
             >
               <BsGithub className={styles.icon} />
-              Sign up with GitHub
+              GitHub
             </button>
           </div>
 
@@ -147,7 +152,7 @@ const Register = () => {
               </div>
 
               <div className={styles.box}>
-                <button className={styles.formBtn}>Sign Up</button>
+                <button className={styles.formBtn}>Register</button>
               </div>
             </div>
           </form>

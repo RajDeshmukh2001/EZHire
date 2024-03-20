@@ -1,5 +1,5 @@
 .container {
-    margin: 50px 0;
+    margin: 50px 140px;
 }
 
 .form {
@@ -38,12 +38,12 @@
 }
 
 .inputFields input,
-.inputFields select,
-.inputFields textarea {
+.inputFields select {
     padding: 12px;
-    border: 1px solid #bbb;
-    border-radius: 4px;
     font-size: 15px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #bbb;
 }
 
 .inputFields input{
@@ -52,10 +52,6 @@
 
 .links input {
     text-transform: initial;
-}
-
-.inputFields select {
-    color: #777;
 }
 
 .inputFields select:is(:focus, :active) {
@@ -105,11 +101,10 @@
 .buttons {
     width: 100%;
     text-align: end;
-    padding-right: 50px;
 }
 
 .btn {
-    margin: 0 30px;
+    margin: 0 15px;
     padding: 8px 14px;
     font-size: 15px;
     font-weight: 400;

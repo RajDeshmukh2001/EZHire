@@ -9,7 +9,7 @@
     transition: all 0.15s ease;
 }
 
-.user a {
+.user .img_div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,73 +19,49 @@
     border: 2px solid #bbb;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.name {
-    text-align: center;
-    text-transform: capitalize;
-    display: block;
-    min-width: 180px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    padding: 10px 5px;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 500;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, -150%);
-    transition: all 0.3s ease;
-    z-index: 1;
-    background-color: #fff;
-    color: #203647;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-}
-
-.name::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -7px;
-    left: 46%;
-    width: 12px;
-    height: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.16);
-    border-left: 1px solid rgba(0, 0, 0, 0.16);
-    background-color: #fff;
-    rotate: 45deg;
-}
-
-.user:hover .name {
-    visibility: visible;
-    opacity: 1;
-    transform: translate(-50%, 115%);
+    background-color: #203647;
 }
 
 .faUser {
     font-size: 35px;
     color: #203647;
+} 
+
+.user ul {
+    width: 120px;
+    position: absolute;
+    top: 50px;
+    border-radius: 8px;
+    border: 0.5px solid #2036473d;
+    color: #203647;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.user ul li {
+    font-size: 15px;
+    list-style: none;
+    padding: 10px;
+    transform-origin: -20px 50%;
+    background-color: #fff;
+}
+
+.user ul li:hover {
+    background-color: #fafafa;
+}
+
+.user ul li:nth-of-type(1) {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.user ul li:nth-last-of-type(1) {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 @media screen and (max-width: 569px) {
     .user {
         display: none;
-    }
-    .name {
-        min-width: 150px;
-        padding: 7px 5px;
-        border: 0.6px solid rgba(0, 0, 0, 0.16);
-        border-radius: 4px;
-        font-size: 12px;
-    }
-
-    .user:hover .name {
-        transform: translate(-50%,  135%);
-    }
-
-    .faUser {
-        font-size: 25px;
     }
 }

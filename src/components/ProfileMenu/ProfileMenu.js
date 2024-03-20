@@ -55,17 +55,17 @@ const ProfileMenu = ({ children }) => {
                             </Link>
 
                             <Link
-                                href="/profile/jobsApplied"
-                                className={pathname === "/profile/jobsApplied" ? styles.active : styles.links}
+                                href="/profile/applied"
+                                className={pathname === "/profile/applied" ? styles.active : styles.links}
                             >
-                                Jobs Applied
+                                Applied
                             </Link>
 
                             <Link
-                                href="/profile/jobsBookmarked"
-                                className={pathname === "/profile/jobsBookmarked" ? styles.active : styles.links}
+                                href="/profile/bookmarkedJobs"
+                                className={pathname === "/profile/bookmarkedJobs" ? styles.active : styles.links}
                             >
-                                Jobs Bookmarked
+                                Bookmarked
                             </Link>
                         </>
                     }

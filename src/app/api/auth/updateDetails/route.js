@@ -131,16 +131,18 @@ const PUT = async (req) => {
                     }
                 });
 
-                var addResume = {
+                const newResume = {
                     asset_id,
                     resume_url: resumeUrl,
                     created_at: new Date(),
                     set_default: true,
                 }
+
+                user.resume.push(newResume);
             }
 
             if (user) {
-                const updateUser = image && resume ? await User.updateOne({ email }, { $set: updateUserFields, $push: { resume: addResume } }) : await User.updateOne({ email }, { $set: updateUserFields });
+                const updateUser = image && resume ? await User.updateOne({ email }, { $set: { ...updateUserFields, resume: user.resume } }) : await User.updateOne({ email }, { $set: updateUserFields });
                 if (updateUser) return new NextResponse('Profile updated successfully', { status: 200 });
             } else if (employer) {
                 const updateEmployer = await Employer.updateOne({ email }, { $set: updateEmployerFields });

@@ -6,29 +6,59 @@ import DOMPurify from 'dompurify';
 import { format } from 'date-fns';
 import Loading from '@/app/loading';
 import styles from './job.module.css';
+import { toast } from 'react-toastify';
 import { FaSuitcase } from 'react-icons/fa';
-import { useSession } from 'next-auth/react';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SlLocationPin } from 'react-icons/sl';
-import { GoShareAndroid } from 'react-icons/go';
 import { AiOutlineFieldNumber } from 'react-icons/ai';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
+import { BsPersonWorkspace, BsDot } from 'react-icons/bs';
 import { GiMoneyStack, GiTakeMyMoney } from 'react-icons/gi';
+import ApplyButton from '@/components/ApplyButton/ApplyButton';
 import RelatedJobs from '@/components/RelatedJobs/RelatedJobs';
 import { UserContext } from '@/context/UserContext/UserContext';
 import { useJobContext } from '@/context/JobContext/JobContext';
-import { BsPersonWorkspace, BsDot, BsBookmark } from 'react-icons/bs';
 import { PiSuitcaseSimple, PiGraduationCapLight, PiClock } from 'react-icons/pi';
 
 const Job = ({ params }) => {
+  const [hasApplied, setHasApplied] = useState(false);
   const { getSingleJob, isSingleLoading, singleJob } = useJobContext();
-  const session = useSession();
-  const { employerInfo } = useContext(UserContext);
-  const email = session?.data?.user?.email;
-
+  const { userInfo } = useContext(UserContext);
+  
   useEffect(() => {
     getSingleJob(`/api/postJob/${params.id}`);
   }, []);
+  
+  const handleApply = async () => {
+    try {
+      const getResumeUrl = userInfo?.resume.filter((res) => res.set_default === true);
+      const setResumeUrl = getResumeUrl[0].resume_url;
+
+      const res = await fetch(`/api/applyJobs`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          jobId: params.id,
+          userId: userInfo?._id,
+          user_name: userInfo?.fullname,
+          user_email: userInfo?.email,
+          user_resume: setResumeUrl
+        })
+      });
+
+      const resAlert = await res.text();
+      if (res.status === 200) {
+        toast.success(resAlert);
+        setHasApplied(true);
+      } else {
+        toast.error(resAlert);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <>
@@ -39,7 +69,11 @@ const Job = ({ params }) => {
           <div className={styles.jobHeader}>
             <div className={styles.logoAndTitle}>
               <div className={styles.logo}>
-                <FaSuitcase className={styles.suitcase} />
+                {singleJob?.company_logo ? 
+                  <Image src={singleJob?.company_logo} alt="logo" width={50} height={50} />
+                  :
+                  <FaSuitcase className={styles.suitcase} />
+                }
               </div>
 
               <div className={styles.title}>
@@ -50,7 +84,7 @@ const Job = ({ params }) => {
 
             <div className={styles.type}>
               <p className={styles.jobType}>{singleJob?.job_type}</p>
-              <p className={styles.applicant}>Applicants: 0</p>
+              <p className={styles.applicant}>Applications: {singleJob?.job_applications?.length}</p>
             </div>
           </div>
 
@@ -58,7 +92,7 @@ const Job = ({ params }) => {
             <div className={styles.flexLeft}>
               <div className={styles.aboutJob}>
                 <h4>About Job</h4>
-                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(singleJob?.job_description || '')}}></p>
+                <p dangerouslySetInnerHTML={{__html: DOMPurify && DOMPurify.sanitize(singleJob?.job_description || '')}}></p>
               </div>
 
               <div className={styles.aboutCompany}>
@@ -66,13 +100,11 @@ const Job = ({ params }) => {
 
                 <div className={styles.links}>
                   {singleJob?.website_link && <Link href={singleJob?.website_link} target='_blank' rel='noopener noreferrer'>Website</Link>}
-                  <BsDot />
-                  {singleJob?.linkedin_link && <Link href={singleJob?.linkedin_link} target='_blank' rel='noopener noreferrer'>LinkedIn</Link>}
-                  <BsDot />
+                  {singleJob?.other_links &&<BsDot />}
                   {singleJob?.other_links && <Link href={singleJob?.other_links} target='_blank' rel='noopener noreferrer'>Profile</Link>}
                 </div>
 
-                <p>{singleJob?.company_description}</p>
+                <p dangerouslySetInnerHTML={{__html: DOMPurify && DOMPurify.sanitize(singleJob?.company_description || '')}}></p>
               </div>
             </div>
 
@@ -199,17 +231,7 @@ const Job = ({ params }) => {
 
               </div>
 
-              <div className={styles.buttons}>
-                {
-                  (session.status === 'unauthenticated' || (session.status === 'authenticated' && employerInfo?.email === email)) ?
-                  <Link href="/login"><button>Login to Apply</button></Link> : 
-                  <button>Apply</button>
-                }
-                <div className={styles.btn}>
-                  <button><BsBookmark /> Save</button>
-                  <button><GoShareAndroid /> Share</button>
-                </div>
-              </div>
+              <ApplyButton handleApply={handleApply} hasApplied={hasApplied} />
             </div>
           </div>
 

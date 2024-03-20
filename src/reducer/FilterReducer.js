@@ -1,10 +1,39 @@
 const FilterReducer = (state, action) => {
     switch (action.type) {
         case 'LOAD_FILTER_JOBS':
+            const { jobs, userInfo } = action.payload;
+            let filteredJobs = [...jobs];
+
+            if (userInfo) {
+                filteredJobs = filteredJobs.filter((job) => {
+                    return !userInfo.jobs_applied.some((applicant) => applicant.jobId === job._id);
+                });
+
+                return {
+                    ...state,
+                    filter_jobs: [...filteredJobs],
+                    all_jobs: [...filteredJobs]
+                }
+            }
+
+            if (filteredJobs.length > 0) {
+                const currentDate = new Date();
+                filteredJobs = filteredJobs.filter((job) => {
+                    const jobApplyByDate = new Date(job.apply_by);
+                    return jobApplyByDate > currentDate;
+                });
+
+                return {
+                    ...state,
+                    filter_jobs: [...filteredJobs],
+                    all_jobs: [...filteredJobs],
+                }
+            }
+
             return {
                 ...state,
-                filter_jobs: [...action.payload],
-                all_jobs: [...action.payload],
+                filter_jobs: [...filteredJobs],
+                all_jobs: [...filteredJobs],
             }
 
         case 'UPDATE_FILTER_VALUE':

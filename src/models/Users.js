@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema(
         location: { type: String },
         skills: { type: String },
         about: { type: String },
+        jobs_applied: [{
+            jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
+            applied_at: { type: Date, default: Date.now }
+        }],
         resume: [{
             asset_id: { type: String },
             resume_url: { type: String },

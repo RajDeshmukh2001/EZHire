@@ -6,8 +6,6 @@ import styles from "./profile.module.css";
 import Button from '@/components/Button/Button';
 import ProfileMenu from '@/components/ProfileMenu/ProfileMenu';
 import { UserContext } from '@/context/UserContext/UserContext';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 
 const Profile = () => {
     const { userInfo, employerInfo } = useContext(UserContext);
@@ -27,7 +25,16 @@ const Profile = () => {
                     {employerInfo &&
                         <div className={styles.content}>
                             <p>Website: </p>
-                            <Link href={employerInfo?.link} target='_blank' rel='noopener noreferrer'>{employerInfo?.link}</Link>
+                            {employerInfo?.link && 
+                                <Link 
+                                    href={employerInfo?.link} 
+                                    target='_blank' 
+                                    rel='noopener noreferrer'
+                                    style={{ color: "#049ee6" }}
+                                >
+                                    {employerInfo?.link}    
+                                </Link>
+                            }
                         </div>
                     }
                 </div>
